@@ -7,19 +7,20 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-jost);
-  --font-display: var(--font-playfair);
-  --font-body: var(--font-jost);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-cormorant);
+  --font-body: var(--font-inter);
   --color-bless-primaria: var(--bless-primaria);
   --color-bless-primaria-dark: var(--bless-primaria-dark);
   --color-bless-nude: var(--bless-nude);
   --color-bless-ink: var(--bless-ink);
+  --color-bless-gray: var(--bless-gray);
+  --color-bless-black: var(--bless-black);
   --color-bless-gold-light: var(--bless-gold-light);
   --color-bless-wood: var(--bless-wood);
   --color-expansao-1: var(--expansao-1);
   --color-expansao-2: var(--expansao-2);
   --color-expansao-3: var(--expansao-3);
-  --font-script: var(--font-script);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -59,15 +60,17 @@
 }
 
 :root {
-  /* Bless Hair & Care — marca-mãe (institucional, Jonathan, header/footer).
-     Hex confirmados em Bless_Documentacao_de_Marca.pdf (2026-07-16) — leitura
-     visual das peças enviadas; confirmar contra o arquivo-fonte (Figma/Canva)
-     antes do lançamento final. */
-  --bless-primaria: #b8873e;
-  --bless-primaria-dark: #8c6a2e;
-  --bless-gold-light: #d8b978;
-  --bless-nude: #f5eee4;
-  --bless-ink: #1c1b19;
+  /* Bless Hair & Care — marca-mãe. Paleta "quiet luxury" (2026-07-17,
+     substitui a leitura mais brilhante do Bless_Documentacao_de_Marca.pdf):
+     fosco, editorial, nada de dourado brilhante — inspirado em Aesop/Le
+     Labo/Aman Resorts, não em referência de salão. */
+  --bless-primaria: #b79a62;
+  --bless-primaria-dark: #9c814f;
+  --bless-gold-light: #cdb483;
+  --bless-nude: #f8f7f3;
+  --bless-ink: #1e1e1e;
+  --bless-gray: #757575;
+  --bless-black: #111111;
   --bless-wood: #5c4536;
 
   /* Sobrancelhas Bless — sub-marca de Eliana Paz, aplicada só na página dela
@@ -83,7 +86,7 @@
   --expansao-2: #2e5266;
   --expansao-3: #a85c32;
 
-  --background: #ffffff;
+  --background: var(--bless-nude);
   --foreground: var(--bless-ink);
   --card: #ffffff;
   --card-foreground: var(--bless-ink);
@@ -91,15 +94,15 @@
   --popover-foreground: var(--bless-ink);
   --primary: var(--bless-primaria);
   --primary-foreground: #ffffff;
-  --secondary: var(--bless-nude);
+  --secondary: #ffffff;
   --secondary-foreground: var(--bless-ink);
-  --muted: var(--bless-nude);
-  --muted-foreground: var(--bless-primaria-dark);
-  --accent: var(--bless-nude);
+  --muted: #ffffff;
+  --muted-foreground: var(--bless-gray);
+  --accent: #ffffff;
   --accent-foreground: var(--bless-ink);
   --destructive: oklch(0.577 0.245 27.325);
-  --border: #e8d5c4;
-  --input: #e8d5c4;
+  --border: #e3e1da;
+  --input: #e3e1da;
   --ring: var(--bless-primaria);
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);

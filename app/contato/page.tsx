@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { LeadForm } from "@forms/LeadForm";
+import { ContatoFork } from "@sections/ContatoFork";
 import { buildMetadata } from "@seo/metadata";
 import { blessTheme } from "@theme/tokens";
 
@@ -55,9 +55,7 @@ export default function ContatoPage() {
           </dl>
         </div>
 
-        <div className="rounded-2xl border border-border bg-bless-nude/20 p-8">
-          <LeadForm origem="site-contato" />
-        </div>
+        <ContatoFork />
       </div>
     </section>
   );

@@ -125,7 +125,11 @@ export function LeadForm({
         </div>
       </div>
 
-      <Button type="submit" disabled={isSubmitting} className="mt-6 w-full bg-bless-primaria hover:bg-bless-primaria-dark" size="lg">
+      <Button
+        type="submit"
+        disabled={isSubmitting}
+        className="mt-6 h-[52px] w-full rounded-full bg-bless-primaria text-sm font-medium hover:bg-bless-primaria-dark"
+      >
         {isSubmitting ? "Enviando..." : ctaLabel}
       </Button>
 

@@ -1,28 +1,22 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Jost, Marck_Script } from "next/font/google";
+import { Cormorant_Garamond, Inter } from "next/font/google";
 import { Header } from "@sections/Header";
 import { Footer } from "@sections/Footer";
 import "./globals.css";
 
-const playfairDisplay = Playfair_Display({
-  variable: "--font-playfair",
+// Direção "quiet luxury" (2026-07-17) — Cormorant Garamond (título) + Inter
+// (texto/botões, substituiu Manrope na rodada de refinamento). Nada de
+// Montserrat/Poppins/Roboto/Lato: essas gritam "template de salão".
+const cormorant = Cormorant_Garamond({
+  variable: "--font-cormorant",
   subsets: ["latin"],
+  weight: ["400", "500", "600"],
   display: "swap",
 });
 
-const jost = Jost({
-  variable: "--font-jost",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
-  display: "swap",
-});
-
-// Papel caligráfico do sistema de marca (Bless_Documentacao_de_Marca.pdf,
-// seção 6) — frases de apelo emocional e assinatura. Uso pontual, nunca em
-// títulos grandes ou corpo de texto.
-const marckScript = Marck_Script({
-  variable: "--font-script",
-  subsets: ["latin"],
-  weight: "400",
   display: "swap",
 });
 
@@ -42,13 +36,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="pt-BR"
-      className={`${playfairDisplay.variable} ${jost.variable} ${marckScript.variable} h-full antialiased`}
-    >
+    <html lang="pt-BR" className={`${cormorant.variable} ${inter.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <Header />
-        <main className="flex-1">{children}</main>
+        <main className="flex-1 pt-20">{children}</main>
         <Footer />
       </body>
     </html>

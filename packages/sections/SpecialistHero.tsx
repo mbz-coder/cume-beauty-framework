@@ -57,7 +57,10 @@ export function SpecialistHero({ variant, nome, papel, bio, imagemAlt, imagemSrc
             {isConversion ? (
               <Link
                 href={ctaHref}
-                className={cn(buttonVariants({ size: "lg" }), "bg-bless-primaria px-8 hover:bg-bless-primaria-dark")}
+                className={cn(
+                  buttonVariants(),
+                  "h-[52px] rounded-full bg-bless-primaria px-8 text-sm font-medium hover:bg-bless-primaria-dark"
+                )}
               >
                 Agendar avaliação
               </Link>
@@ -66,7 +69,10 @@ export function SpecialistHero({ variant, nome, papel, bio, imagemAlt, imagemSrc
                 href={ctaHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={cn(buttonVariants({ variant: "outline", size: "lg" }), "px-8")}
+                className={cn(
+                  buttonVariants({ variant: "outline" }),
+                  "h-[52px] rounded-full px-8 text-sm font-medium"
+                )}
               >
                 Conhecer o trabalho
               </a>

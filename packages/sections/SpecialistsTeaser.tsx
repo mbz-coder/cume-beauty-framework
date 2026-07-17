@@ -1,58 +1,62 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { fadeUpViewport } from "@theme/motion";
 import { getPublishedSpecialists } from "@specialists/data";
 
-// PRD (2026-07-16, redefinição de posicionamento): Bless é marca guarda-chuva
-// de duas especialidades — a apresentação é simétrica (os dois aparecem aqui
-// com o mesmo peso), mesmo que o investimento em mídia paga não seja (só a
-// Eliana roda campanha; o Hair Stylist constrói autoridade, não captação).
+// Revista, não seção — split-screen lado a lado, imagem aproxima devagar no
+// hover. "As pessoas compram pessoas antes de comprarem procedimento."
 export function SpecialistsTeaser() {
   const specialists = getPublishedSpecialists();
   if (specialists.length === 0) return null;
 
   return (
-    <section className="border-b border-border">
-      <div className="mx-auto max-w-[1400px] px-6 py-24 md:py-32">
-        <motion.h2 {...fadeUpViewport} className="text-center font-display text-3xl text-bless-ink md:text-4xl">
-          Conheça nossos especialistas
-        </motion.h2>
+    <section className="py-24 md:py-[180px]">
+      <motion.p
+        {...fadeUpViewport}
+        className="px-6 pb-16 text-center text-xs font-medium tracking-[0.2em] text-bless-gray uppercase"
+      >
+        Nossa equipe
+      </motion.p>
 
-        <div
-          className={`mx-auto mt-16 grid max-w-4xl gap-8 ${
-            specialists.length === 1 ? "grid-cols-1 justify-items-center" : "md:grid-cols-2"
-          }`}
-        >
-          {specialists.map((specialist, i) => (
-            <motion.div
-              key={specialist.slug}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ delay: i * 0.1 }}
-              variants={{
-                hidden: { opacity: 0, y: 16 },
-                visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
-              }}
-              className="w-full max-w-sm rounded-2xl border border-border bg-bless-nude/20 p-8 text-center"
-            >
-              <span className="text-xs font-medium tracking-wide text-bless-primaria-dark uppercase">
+      <div className={`grid gap-px bg-border ${specialists.length > 1 ? "md:grid-cols-2" : "mx-auto max-w-xl"}`}>
+        {specialists.map((specialist) => (
+          <Link
+            key={specialist.slug}
+            href={`/especialistas/${specialist.slug}`}
+            className="group relative block h-[70vh] overflow-hidden bg-bless-nude"
+          >
+            {specialist.imagemSrc ? (
+              <Image
+                src={specialist.imagemSrc}
+                alt={specialist.imagemAlt}
+                fill
+                sizes="(min-width: 768px) 50vw, 100vw"
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+              />
+            ) : (
+              <div className="flex h-full w-full items-center justify-center">
+                <span className="font-display text-sm text-bless-gray">
+                  Foto de {specialist.nome} — em produção
+                </span>
+              </div>
+            )}
+
+            <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/0 to-transparent" aria-hidden />
+
+            <div className="absolute inset-x-0 bottom-0 px-8 pb-10 text-center md:text-left">
+              <span className="text-xs font-medium tracking-[0.2em] text-white/70 uppercase">
                 {specialist.papel}
               </span>
-              <h3 className="mt-2 font-display text-2xl text-bless-ink">{specialist.nome}</h3>
-              <p className="mt-3 text-sm text-bless-ink/70">{specialist.areaLabel}</p>
-
-              <Link
-                href={`/especialistas/${specialist.slug}`}
-                className="mt-6 inline-block text-sm font-medium text-bless-primaria hover:text-bless-primaria-dark hover:underline"
-              >
-                {specialist.variant === "conversion" ? "Agendar estética" : "Conhecer o trabalho"} →
-              </Link>
-            </motion.div>
-          ))}
-        </div>
+              <h3 className="mt-2 font-display text-4xl font-medium text-white">{specialist.nome}</h3>
+              <span className="mt-3 inline-block text-xs font-medium tracking-widest text-white uppercase underline-offset-4 group-hover:underline">
+                {specialist.variant === "conversion" ? "Conhecer a história" : "Conhecer o trabalho"} →
+              </span>
+            </div>
+          </Link>
+        ))}
       </div>
     </section>
   );
