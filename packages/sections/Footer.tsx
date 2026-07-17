@@ -27,8 +27,7 @@ export function Footer() {
             <nav className="mt-3 flex flex-col gap-2 text-sm text-white/60">
               <Link href="/" className="hover:text-bless-gold-light">Início</Link>
               <Link href="/sobre" className="hover:text-bless-gold-light">Sobre</Link>
-              <Link href="/especialistas/eliana" className="hover:text-bless-gold-light">Eliana</Link>
-              <Link href="/especialistas/jonathan" className="hover:text-bless-gold-light">Jonathan</Link>
+              <Link href="/#especialistas" className="hover:text-bless-gold-light">Especialistas</Link>
               <Link href="/contato" className="hover:text-bless-gold-light">Contato</Link>
             </nav>
           </div>

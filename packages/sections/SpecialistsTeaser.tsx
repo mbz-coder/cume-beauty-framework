@@ -16,7 +16,7 @@ export function SpecialistsTeaser() {
   if (specialists.length === 0) return null;
 
   return (
-    <section className="py-32 md:py-[220px]">
+    <section id="especialistas" className="scroll-mt-20 py-32 md:py-[220px]">
       <motion.div {...fadeUpViewport} className="px-6 pb-20 text-center">
         <h2 className="font-display text-4xl font-medium tracking-wide text-bless-ink uppercase md:text-5xl">
           Especialistas

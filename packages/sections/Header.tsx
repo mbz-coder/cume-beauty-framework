@@ -7,11 +7,13 @@ import { Menu, X } from "lucide-react";
 import { buttonVariants } from "@ui/button";
 import { cn } from "@utils/cn";
 
+// Um link só pros dois especialistas (âncora na seção "Especialistas" da
+// Home) — não lista Eliana/Jonathan separado na navegação, mesma lógica de
+// "uma narrativa, não dois departamentos" aplicada na seção em si.
 const NAV_LINKS = [
   { href: "/", label: "Início" },
   { href: "/sobre", label: "Sobre" },
-  { href: "/especialistas/eliana", label: "Eliana" },
-  { href: "/especialistas/jonathan", label: "Jonathan" },
+  { href: "/#especialistas", label: "Especialistas" },
   { href: "/contato", label: "Contato" },
 ];
 
