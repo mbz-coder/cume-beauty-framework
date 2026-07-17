@@ -26,11 +26,23 @@ export interface Specialist {
   nome: string;
   papel: string;
   areaLabel: string;
+  // Frase curta editorial pro card "Nossa equipe" na Home — telegráfico,
+  // diferente do areaLabel (mais descritivo, usado em outro contexto).
+  descricaoCurta: string;
   variant: SpecialistVariant;
   brandTheme: SpecialistBrandTheme;
   bio: string;
+  // Foto da página própria do especialista (SpecialistHero / "sobre").
   imagemAlt: string;
   imagemSrc?: string;
+  imagemPosition?: string;
+  // Foto do card na Home (SpecialistsTeaser) — propositalmente separada da
+  // de cima, contextos e enquadramentos diferentes.
+  imagemHomeAlt?: string;
+  imagemHomeSrc?: string;
+  // CSS object-position (ex: "50% 15%") — ajuste fino de enquadramento quando
+  // o rosto não fica centralizado na foto original.
+  imagemHomePosition?: string;
   procedimentos: SpecialistBeneficio[];
   faq: SpecialistFaqItem[];
   ctaTeaser: string;

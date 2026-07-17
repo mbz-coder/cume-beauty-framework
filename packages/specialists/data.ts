@@ -7,13 +7,17 @@ export const SPECIALISTS: Record<string, Specialist> = {
   eliana: {
     slug: "eliana",
     nome: "Eliana Paz",
-    papel: "Especialista em estética facial e corporal",
+    papel: "Especialista em Estética Avançada",
     areaLabel: "Micropigmentação, laser, sobrancelhas e estética facial",
+    descricaoCurta: "Micropigmentação, laser e tratamentos faciais para valorizar sua beleza com naturalidade e tecnologia.",
     variant: "conversion",
     brandTheme: "wine",
     bio: "Há anos cuidando da autoestima de clientes na Zona Oeste de São Paulo, a Eliana acredita em resultado com técnica — não em promessa vazia. Toda cliente nova começa pela avaliação, pra garantir que o protocolo indicado é o certo pra pele e o objetivo dela.",
-    imagemAlt: "Eliana atendendo uma cliente",
-    imagemSrc: "/images/especialistas/eliana/eliana-retrato.jpg",
+    imagemAlt: "Eliana Paz, especialista em estética avançada",
+    imagemSrc: "/images/especialistas/eliana/sobreelianadapaz.jpg",
+    imagemHomeAlt: "Eliana atendendo uma cliente",
+    imagemHomeSrc: "/images/especialistas/eliana/elianadapazhome.png",
+    imagemHomePosition: "50% 15%",
     procedimentos: [
       { icone: "✨", titulo: "Design de Sobrancelha", texto: "Design personalizado pro seu formato de rosto." },
       { icone: "💉", titulo: "Micropigmentação", texto: "Técnica avaliada caso a caso, sem padrão fixo." },
@@ -42,11 +46,16 @@ export const SPECIALISTS: Record<string, Specialist> = {
     nome: "Jonathan",
     papel: "Hair Stylist",
     areaLabel: "Especialista em Loiros, Coloração, Corte e Tratamentos",
+    descricaoCurta:
+      "Transformações autorais, coloração e cortes personalizados para mulheres que buscam sofisticação e identidade.",
     variant: "authority",
     brandTheme: "gold",
-    bio: "Com agenda consolidada ao longo dos anos, o Jonathan atende um número limitado de clientes pra manter a qualidade e o atendimento personalizado. Atendimento exclusivamente com horário marcado — as vagas são limitadas pela alta procura, não pela falta de espaço.",
-    imagemAlt: "Jonathan finalizando um corte",
-    imagemSrc: "/images/especialistas/jonathan/jonathan-retrato.jpg",
+    bio: "Agenda reduzida. Cada atendimento é realizado exclusivamente com horário marcado, permitindo dedicação total a cada transformação. Isso transmite exclusividade — não escassez.",
+    imagemAlt: "Jonathan, hair stylist da Bless",
+    imagemSrc: "/images/especialistas/jonathan/jhonsobre.png",
+    imagemHomeAlt: "Jonathan finalizando um corte",
+    imagemHomeSrc: "/images/especialistas/jonathan/jonathan-retrato.jpg",
+    imagemHomePosition: "50% 12%",
     procedimentos: [
       { icone: "🌟", titulo: "Loiros", texto: "Especialista em loiros — técnica autoral pra cada tom." },
       { icone: "🎨", titulo: "Coloração", texto: "Coloração e mechas com técnica autoral." },
@@ -67,8 +76,13 @@ export const SPECIALISTS: Record<string, Specialist> = {
   },
 };
 
+// Jonathan primeiro (esquerda — foto de maior impacto, "fashion"), Eliana
+// depois (direita — acolhedora, conduz pro agendamento). Ordem de leitura
+// esquerda→direita é proposital, não é a ordem de definição do objeto acima.
+const TEASER_ORDER = ["jonathan", "eliana"];
+
 export function getPublishedSpecialists(): Specialist[] {
-  return Object.values(SPECIALISTS).filter((s) => s.published);
+  return TEASER_ORDER.map((slug) => SPECIALISTS[slug]).filter((s) => s?.published);
 }
 
 export function getSpecialist(slug: string): Specialist | undefined {

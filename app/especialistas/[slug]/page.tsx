@@ -48,10 +48,7 @@ export default async function SpecialistPage(props: { params: Promise<{ slug: st
       />
 
       {specialist.procedimentos.length > 0 && (
-        <ServicesGrid
-          titulo={`Procedimentos com ${specialist.nome}`}
-          beneficios={specialist.procedimentos}
-        />
+        <ServicesGrid titulo="Nossas especialidades" beneficios={specialist.procedimentos} />
       )}
 
       {specialist.faq.length > 0 && <FAQSection faq={specialist.faq} />}
