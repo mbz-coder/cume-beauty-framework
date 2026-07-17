@@ -11,7 +11,10 @@ export const SPECIALISTS: Record<string, Specialist> = {
     areaLabel: "Micropigmentação, laser, sobrancelhas e estética facial",
     descricaoCurta: "Micropigmentação, laser e tratamentos faciais para valorizar sua beleza com naturalidade e tecnologia.",
     variant: "conversion",
-    brandTheme: "wine",
+    // Corrigido 2026-07-17: a identidade da Eliana é bege/dourado quente,
+    // igual o resto da Bless (conferido nas artes reais dela) — não é uma
+    // sub-marca vinho separada como o doc de marca original sugeria.
+    brandTheme: "gold",
     bio: "Há anos cuidando da autoestima de clientes na Zona Oeste de São Paulo, a Eliana acredita em resultado com técnica — não em promessa vazia. Toda cliente nova começa pela avaliação, pra garantir que o protocolo indicado é o certo pra pele e o objetivo dela.",
     imagemAlt: "Eliana Paz, especialista em estética avançada",
     imagemSrc: "/images/especialistas/eliana/sobreelianadapaz.jpg",

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Hero } from "@sections/Hero";
 import { SpecialistsTeaser } from "@sections/SpecialistsTeaser";
+import { EspacoSection } from "@sections/EspacoSection";
 import { Manifesto } from "@sections/Manifesto";
 import { Testimonials } from "@sections/Testimonials";
 import { FAQSection } from "@sections/FAQSection";
@@ -32,6 +33,8 @@ export default function HomePage() {
       <Manifesto />
 
       <SpecialistsTeaser />
+
+      <EspacoSection />
 
       <Testimonials
         depoimentos={[
