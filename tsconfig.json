@@ -19,7 +19,15 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "@ui/*": ["./packages/ui/*"],
+      "@sections/*": ["./packages/sections/*"],
+      "@forms/*": ["./packages/forms/*"],
+      "@seo/*": ["./packages/seo/*"],
+      "@theme/*": ["./packages/theme/*"],
+      "@hooks/*": ["./packages/hooks/*"],
+      "@utils/*": ["./packages/utils/*"],
+      "@specialists/*": ["./packages/specialists/*"]
     }
   },
   "include": [
