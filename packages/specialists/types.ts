@@ -9,6 +9,11 @@ export interface SpecialistBeneficio {
   icone: string;
   titulo: string;
   texto: string;
+  // Foto real do procedimento em ação, pra seção "Nossas especialidades" da
+  // Home (packages/sections/TreatmentsSection.tsx). Sem imagemSrc = placeholder
+  // "em produção", mesmo padrão do SpecialistHero.
+  imagemSrc?: string;
+  imagemAlt?: string;
 }
 
 export interface SpecialistFaqItem {

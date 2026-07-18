@@ -22,10 +22,28 @@ export const SPECIALISTS: Record<string, Specialist> = {
     imagemHomeSrc: "/images/especialistas/eliana/elianadapazhome.png",
     imagemHomePosition: "50% 15%",
     procedimentos: [
-      { icone: "✨", titulo: "Design de Sobrancelha", texto: "Design personalizado pro seu formato de rosto." },
+      {
+        icone: "✨",
+        titulo: "Design de Sobrancelha",
+        texto: "Design personalizado pro seu formato de rosto.",
+        imagemSrc: "/images/tratamentos/eliana-sobrancelha.jpg",
+        imagemAlt: "Eliana fazendo design de sobrancelha em uma cliente",
+      },
       { icone: "💉", titulo: "Micropigmentação", texto: "Técnica avaliada caso a caso, sem padrão fixo." },
-      { icone: "⚡", titulo: "Laser / Bless Day", texto: "Potência máxima segura desde a primeira sessão." },
-      { icone: "🌿", titulo: "Lavieen / Protocolo Pele Nova", texto: "Protocolo de renovação de pele sob avaliação." },
+      {
+        icone: "⚡",
+        titulo: "Laser / Bless Day",
+        texto: "Potência máxima segura desde a primeira sessão.",
+        imagemSrc: "/images/tratamentos/eliana-laser.jpg",
+        imagemAlt: "Eliana aplicando laser em uma cliente, com óculos de proteção",
+      },
+      {
+        icone: "🌿",
+        titulo: "Lavieen / Protocolo Pele Nova",
+        texto: "Protocolo de renovação de pele sob avaliação.",
+        imagemSrc: "/images/tratamentos/eliana-lavieen.jpg",
+        imagemAlt: "Eliana aplicando protocolo facial em uma cliente",
+      },
     ],
     faq: [
       {

@@ -1,0 +1,70 @@
+"use client";
+
+import Image from "next/image";
+import { motion } from "framer-motion";
+import { fadeUpViewport, scaleInViewport } from "@theme/motion";
+import { getPublishedSpecialists } from "@specialists/data";
+
+// Mesmo ensaio fotográfico do EspacoSection — uma foto grande por vez — mas
+// aqui cada bloco carrega o procedimento + quem faz. Junta os procedimentos
+// de todos os especialistas publicados numa lista só, na ordem em que já
+// aparecem em cada `procedimentos` (Eliana primeiro, tem fotos reais; o
+// Jonathan entra com placeholder "em produção" até ele subir fotos de
+// atendimento — mesmo padrão do SpecialistHero).
+export function TreatmentsSection() {
+  const especialidades = getPublishedSpecialists().flatMap((specialist) =>
+    specialist.procedimentos.map((procedimento) => ({
+      ...procedimento,
+      especialista: specialist.nome,
+    }))
+  );
+
+  return (
+    <section id="especialidades" className="scroll-mt-20 py-32 md:py-[220px]">
+      <motion.div {...fadeUpViewport} className="px-6 pb-20 text-center">
+        <h2 className="font-display text-4xl font-medium tracking-wide text-bless-ink uppercase md:text-5xl">
+          Nossas especialidades
+        </h2>
+      </motion.div>
+
+      <div className="flex flex-col gap-24 md:gap-32">
+        {especialidades.map((item, i) => (
+          <motion.div
+            key={`${item.especialista}-${item.titulo}`}
+            {...scaleInViewport}
+            className="relative mx-auto h-[80vh] w-full max-w-[1600px] overflow-hidden md:px-6"
+          >
+            <div className="relative h-full w-full overflow-hidden md:rounded-sm">
+              {item.imagemSrc ? (
+                <Image
+                  src={item.imagemSrc}
+                  alt={item.imagemAlt ?? item.titulo}
+                  fill
+                  sizes="100vw"
+                  priority={i === 0}
+                  className="object-cover"
+                />
+              ) : (
+                <div
+                  role="img"
+                  aria-label={`Foto de ${item.titulo} — em produção`}
+                  className="flex h-full w-full items-center justify-center bg-bless-nude text-bless-primaria-dark/50"
+                >
+                  <span className="font-display text-sm">Foto de {item.titulo} — em produção</span>
+                </div>
+              )}
+
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-bless-black/70 to-transparent px-8 py-10 md:px-12">
+                <span className="text-xs font-medium tracking-[0.2em] text-white/70 uppercase">
+                  {item.especialista}
+                </span>
+                <h3 className="mt-2 font-display text-2xl text-white md:text-3xl">{item.titulo}</h3>
+                <p className="mt-2 max-w-md text-sm text-white/80">{item.texto}</p>
+              </div>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </section>
+  );
+}
