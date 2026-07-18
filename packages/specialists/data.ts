@@ -7,6 +7,7 @@ export const SPECIALISTS: Record<string, Specialist> = {
   eliana: {
     slug: "eliana",
     nome: "Eliana Paz",
+    artigo: "a",
     papel: "Especialista em Estética Avançada",
     areaLabel: "Micropigmentação, laser, sobrancelhas e estética facial",
     descricaoCurta: "Micropigmentação, laser e tratamentos faciais para valorizar sua beleza com naturalidade e tecnologia.",
@@ -65,6 +66,7 @@ export const SPECIALISTS: Record<string, Specialist> = {
   jonathan: {
     slug: "jonathan",
     nome: "Jonathan",
+    artigo: "o",
     papel: "Hair Stylist",
     areaLabel: "Especialista em Loiros, Coloração, Corte e Tratamentos",
     descricaoCurta:

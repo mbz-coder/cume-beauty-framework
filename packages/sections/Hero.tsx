@@ -40,7 +40,7 @@ export function Hero({
     <section
       className={cn(
         "relative flex min-h-screen items-center overflow-hidden",
-        hasVideo ? "-mt-20" : "border-b border-border bg-bless-nude"
+        hasVideo ? "-mt-16" : "border-b border-border bg-bless-nude"
       )}
     >
       {hasVideo && (

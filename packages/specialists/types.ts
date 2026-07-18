@@ -29,6 +29,9 @@ export type SpecialistBrandTheme = "gold" | "wine" | "expansao-1" | "expansao-2"
 export interface Specialist {
   slug: string;
   nome: string;
+  // Artigo definido pro nome ("a Eliana", "o Jonathan") — usado no botão
+  // "Conhecer {artigo} {nome}" do card da Home (SpecialistsTeaser).
+  artigo: "a" | "o";
   papel: string;
   areaLabel: string;
   // Frase curta editorial pro card "Nossa equipe" na Home — telegráfico,

@@ -5,6 +5,7 @@ import { TreatmentsSection } from "@sections/TreatmentsSection";
 import { ResultadosSection } from "@sections/ResultadosSection";
 import { EspacoSection } from "@sections/EspacoSection";
 import { Manifesto } from "@sections/Manifesto";
+import { EditorialPause } from "@sections/EditorialPause";
 import { Testimonials } from "@sections/Testimonials";
 import { FAQSection } from "@sections/FAQSection";
 import { CTASection } from "@sections/CTASection";
@@ -25,14 +26,19 @@ export default function HomePage() {
 
       <Hero
         badge="Bless"
-        headline={["Beleza que inspira confiança."]}
-        sub="Tecnologia, cuidado e especialistas para transformar sua autoestima."
+        headline={["A beleza que respeita quem você é."]}
+        sub="Cada detalhe pensado para valorizar sua essência — muito além de um procedimento."
         ctaPrincipal="Agendar avaliação"
         ctaPrincipalHref="/contato"
         youtubeId="Hf6abfL1la4"
       />
 
       <Manifesto />
+
+      <EditorialPause
+        src="/images/lifestyle/pausa-editorial.jpg"
+        alt="Atendimento na Bless Hair & Care"
+      />
 
       <SpecialistsTeaser />
 

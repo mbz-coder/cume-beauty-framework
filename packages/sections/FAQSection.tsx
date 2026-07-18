@@ -13,7 +13,7 @@ interface FaqItem {
 export function FAQSection({ faq }: { faq: FaqItem[] }) {
   return (
     <section className="border-t border-border">
-      <div className="mx-auto max-w-3xl px-6 py-24 md:py-32">
+      <div className="mx-auto max-w-3xl px-6 py-32 md:py-40">
         <h2 className="text-center font-display text-3xl text-bless-ink md:text-4xl">
           Perguntas frequentes
         </h2>

@@ -20,14 +20,17 @@ export function TreatmentsSection() {
   );
 
   return (
-    <section id="especialidades" className="scroll-mt-20 py-32 md:py-[220px]">
-      <motion.div {...fadeUpViewport} className="px-6 pb-20 text-center">
+    <section id="especialidades" className="scroll-mt-16 py-40 md:py-[260px]">
+      <motion.div {...fadeUpViewport} className="px-6 pb-24 text-center">
         <h2 className="font-display text-4xl font-medium tracking-wide text-bless-ink uppercase md:text-5xl">
           Nossas especialidades
         </h2>
+        <p className="mx-auto mt-4 max-w-md text-bless-gray">
+          Cada procedimento pensado pra valorizar sua essência — nunca em série.
+        </p>
       </motion.div>
 
-      <div className="flex flex-col gap-24 md:gap-32">
+      <div className="flex flex-col gap-28 md:gap-40">
         {especialidades.map((item, i) => (
           <motion.div
             key={`${item.especialista}-${item.titulo}`}

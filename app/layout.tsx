@@ -1,16 +1,20 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Inter } from "next/font/google";
+import { Fraunces, Inter } from "next/font/google";
 import { Header } from "@sections/Header";
 import { Footer } from "@sections/Footer";
 import "./globals.css";
 
-// Direção "quiet luxury" (2026-07-17) — Cormorant Garamond (título) + Inter
-// (texto/botões, substituiu Manrope na rodada de refinamento). Nada de
-// Montserrat/Poppins/Roboto/Lato: essas gritam "template de salão".
-const cormorant = Cormorant_Garamond({
+// Direção "quiet luxury" (2026-07-17) + polish editorial (2026-07-18): trocado
+// Cormorant Garamond → Fraunces no título — mesma família "serifada elegante",
+// mas com mais caráter/personalidade (itálico mais expressivo, ótimo pra
+// citações). Continua mapeado na var --font-cormorant de propósito, pra não
+// mexer no resto do tema (globals.css/Tailwind). Inter segue no corpo/botões.
+// Nada de Montserrat/Poppins/Roboto/Lato: essas gritam "template de salão".
+const cormorant = Fraunces({
   variable: "--font-cormorant",
   subsets: ["latin"],
   weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 
@@ -39,7 +43,7 @@ export default function RootLayout({
     <html lang="pt-BR" className={`${cormorant.variable} ${inter.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <Header />
-        <main className="flex-1 pt-20">{children}</main>
+        <main className="flex-1 pt-16">{children}</main>
         <Footer />
       </body>
     </html>

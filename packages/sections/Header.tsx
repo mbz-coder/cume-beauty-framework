@@ -42,21 +42,21 @@ export function Header() {
         transparent ? "border-transparent bg-transparent" : "border-b border-border bg-background/95 backdrop-blur"
       )}
     >
-      <div className="mx-auto flex h-20 max-w-[1400px] items-center justify-between px-6">
+      <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between px-6">
         <Link
           href="/"
-          className={cn("font-display text-xl tracking-wide", transparent ? "text-white" : "text-bless-ink")}
+          className={cn("font-display text-lg tracking-wide", transparent ? "text-white" : "text-bless-ink")}
         >
           Bless <span className={transparent ? "text-bless-gold-light" : "text-bless-primaria"}>Hair &amp; Care</span>
         </Link>
 
-        <nav className="hidden items-center gap-10 md:flex">
+        <nav className="hidden items-center gap-8 md:flex">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               className={cn(
-                "text-xs font-medium tracking-widest uppercase transition-colors",
+                "text-[0.7rem] font-medium tracking-[0.15em] uppercase transition-colors",
                 transparent ? "text-white/80 hover:text-white" : "text-bless-ink/70 hover:text-bless-primaria"
               )}
             >
@@ -69,10 +69,10 @@ export function Header() {
           href="/contato"
           className={cn(
             buttonVariants({ variant: "outline" }),
-            "hidden h-11 rounded-full px-7 text-sm font-medium md:inline-flex",
+            "hidden h-9 rounded-full px-6 text-[0.7rem] font-medium tracking-[0.1em] md:inline-flex",
             transparent
-              ? "border-white/50 bg-transparent text-white hover:bg-white/10"
-              : "border-bless-ink/20 bg-transparent text-bless-ink hover:bg-bless-ink hover:text-white"
+              ? "border-white/40 bg-transparent text-white hover:bg-white/10"
+              : "border-bless-ink/15 bg-transparent text-bless-ink hover:bg-bless-ink hover:text-white"
           )}
         >
           Agendar avaliação
