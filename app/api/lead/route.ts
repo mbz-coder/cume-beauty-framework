@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
 
 // Proxy server-to-server pro /api/lead do cume-lp-system — evita CORS no
 // browser e mantém o cume-lp-system intocado (PRD seção 1). O site nunca
@@ -8,6 +9,16 @@ export async function POST(req: NextRequest) {
   if (!lpSystemUrl) {
     console.error("LP_SYSTEM_API_URL não configurada");
     return NextResponse.json({ error: "Lead API não configurada" }, { status: 500 });
+  }
+
+  // Auditoria Arquitetural 360, Fase 1 P0 — mesma protecao do endpoint
+  // upstream, aqui tambem, pra nao depender so do rate limit do
+  // cume-lp-system (defesa em profundidade, o proxy tem seu proprio IP
+  // de origem visto pelo upstream).
+  const ip = getClientIp(req);
+  const { success } = await checkRateLimit("lead-proxy", ip, 10, "1 m");
+  if (!success) {
+    return NextResponse.json({ error: "Muitas tentativas — tente novamente em instantes." }, { status: 429 });
   }
 
   try {
