@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Hero } from "@sections/Hero";
 import { SpecialistsTeaser } from "@sections/SpecialistsTeaser";
-import { TreatmentsSection } from "@sections/TreatmentsSection";
+import { TreatmentsSection, type EspecialidadeExibida } from "@sections/TreatmentsSection";
+import { getPublishedSpecialists } from "@specialists/data";
 import { ResultadosSection } from "@sections/ResultadosSection";
 import { EspacoSection } from "@sections/EspacoSection";
 import { Manifesto } from "@sections/Manifesto";
@@ -40,6 +41,22 @@ const faqFallback = [
   },
 ];
 
+// Fallback local pra "Nossas especialidades" — usado só enquanto o Content
+// Repository não tiver Servico cadastrado pra este cliente (mesma regra de
+// dominio do FAQ acima). Deriva de packages/specialists/data.ts, igual o
+// comportamento anterior a esta mudança.
+function especialidadesFallback(): EspecialidadeExibida[] {
+  return getPublishedSpecialists().flatMap((specialist) =>
+    specialist.procedimentos.map((procedimento) => ({
+      titulo: procedimento.titulo,
+      texto: procedimento.texto,
+      imagemSrc: procedimento.imagemSrc,
+      imagemAlt: procedimento.imagemAlt,
+      especialista: specialist.nome,
+    }))
+  );
+}
+
 export default async function HomePage() {
   const repository = await buscarConteudoRepository(resolverSlugFromEnv());
   const faq = escolherOuFallback(
@@ -48,6 +65,16 @@ export default async function HomePage() {
       .sort((a, b) => a.ordem - b.ordem)
       .map((f) => ({ pergunta: f.pergunta, resposta: f.resposta })),
     faqFallback
+  );
+  const especialidades = escolherOuFallback(
+    repository?.servicos.map((servico) => ({
+      titulo: servico.nome,
+      texto: servico.descricao ?? "",
+      imagemSrc: servico.midias[0]?.url,
+      imagemAlt: servico.nome,
+      especialista: servico.profissionais[0]?.nome ?? "Equipe Bless",
+    })),
+    especialidadesFallback()
   );
 
   return (
@@ -72,7 +99,7 @@ export default async function HomePage() {
 
       <SpecialistsTeaser />
 
-      <TreatmentsSection />
+      <TreatmentsSection especialidades={especialidades} />
 
       <ResultadosSection />
 

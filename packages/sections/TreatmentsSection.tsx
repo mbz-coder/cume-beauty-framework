@@ -3,22 +3,23 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { fadeUpViewport, scaleInViewport } from "@theme/motion";
-import { getPublishedSpecialists } from "@specialists/data";
+
+// Item exibido nesta secao — ou vem do Content Repository (Servico ->
+// Profissional/Midia, evolucao de schema 2026-07-21) ou do fallback local
+// derivado de packages/specialists/data.ts (ver app/page.tsx, mesma regra
+// de propriedade por dominio do FAQ: Repository ganha inteiro assim que
+// tiver >=1 Servico pro cliente, senao cai pro fallback inteiro).
+export interface EspecialidadeExibida {
+  titulo: string;
+  texto: string;
+  especialista: string;
+  imagemSrc?: string;
+  imagemAlt?: string;
+}
 
 // Mesmo ensaio fotográfico do EspacoSection — uma foto grande por vez — mas
-// aqui cada bloco carrega o procedimento + quem faz. Junta os procedimentos
-// de todos os especialistas publicados numa lista só, na ordem em que já
-// aparecem em cada `procedimentos` (Eliana primeiro, tem fotos reais; o
-// Jonathan entra com placeholder "em produção" até ele subir fotos de
-// atendimento — mesmo padrão do SpecialistHero).
-export function TreatmentsSection() {
-  const especialidades = getPublishedSpecialists().flatMap((specialist) =>
-    specialist.procedimentos.map((procedimento) => ({
-      ...procedimento,
-      especialista: specialist.nome,
-    }))
-  );
-
+// aqui cada bloco carrega o procedimento + quem faz.
+export function TreatmentsSection({ especialidades }: { especialidades: EspecialidadeExibida[] }) {
   return (
     <section id="especialidades" className="scroll-mt-16 py-40 md:py-[260px]">
       <motion.div {...fadeUpViewport} className="px-6 pb-24 text-center">
