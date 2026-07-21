@@ -10,16 +10,29 @@ import { EditorialPause } from "@sections/EditorialPause";
 import { Testimonials } from "@sections/Testimonials";
 import { FAQSection } from "@sections/FAQSection";
 import { CTASection } from "@sections/CTASection";
-import { JsonLd, localBusinessSchema } from "@seo/JsonLd";
+import { JsonLd, localBusinessSchema, faqPageSchema, serviceListSchema } from "@seo/JsonLd";
 import { buildMetadata } from "@seo/metadata";
 import { buscarConteudoRepository, escolherOuFallback, resolverSlugFromEnv } from "@mbz-coder/cume-content-sdk";
 
-export const metadata: Metadata = buildMetadata({
+const metaFallback = {
   title: "Bless Hair & Care | Beleza que cuida — Pirituba, Zona Oeste SP",
   description:
     "Sobrancelha, laser, pele e autoestima — tudo com avaliação antes de qualquer procedimento. Nada aqui é padrão.",
-  path: "/",
-});
+};
+
+// SEO automatico (2026-07-21) -- ConfiguracaoSeo (metaTituloPadrao/
+// metaDescricaoPadrao) do Content Repository alimenta o <title>/<meta
+// description> quando presente; cai pro fallback hardcoded quando o
+// Repository nao tem SEO cadastrado ainda pra este cliente (mesma regra de
+// dominio do FAQ/Servicos).
+export async function generateMetadata(): Promise<Metadata> {
+  const repository = await buscarConteudoRepository(resolverSlugFromEnv());
+  return buildMetadata({
+    title: repository?.seo?.metaTitulo ?? metaFallback.title,
+    description: repository?.seo?.metaDescricao ?? metaFallback.description,
+    path: "/",
+  });
+}
 
 // FAQ hardcoded aqui é o fallback local — usado só enquanto o Content
 // Repository não tiver FAQ cadastrado pra este cliente (ver
@@ -83,7 +96,13 @@ export default async function HomePage() {
 
   return (
     <>
-      <JsonLd data={localBusinessSchema()} />
+      <JsonLd data={localBusinessSchema({ nome: repository?.hero.nome })} />
+      <JsonLd data={faqPageSchema(faq)} />
+      {serviceListSchema(
+        repository?.servicos.filter((servico) => servico.ativo) ?? especialidades.map((e) => ({ nome: e.titulo, descricao: e.texto }))
+      ).map((schema, i) => (
+        <JsonLd key={i} data={schema} />
+      ))}
 
       <Hero
         badge="Bless"
