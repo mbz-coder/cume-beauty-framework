@@ -67,13 +67,17 @@ export default async function HomePage() {
     faqFallback
   );
   const especialidades = escolherOuFallback(
-    repository?.servicos.map((servico) => ({
-      titulo: servico.nome,
-      texto: servico.descricao ?? "",
-      imagemSrc: servico.midias[0]?.url,
-      imagemAlt: servico.nome,
-      especialista: servico.profissionais[0]?.nome ?? "Equipe Bless",
-    })),
+    repository?.servicos
+      .filter((servico) => servico.ativo)
+      .slice()
+      .sort((a, b) => a.ordem - b.ordem)
+      .map((servico) => ({
+        titulo: servico.nome,
+        texto: servico.descricaoCurta ?? servico.descricao ?? "",
+        imagemSrc: servico.midias[0]?.url,
+        imagemAlt: servico.nome,
+        especialista: servico.profissionais[0]?.nome ?? "Equipe Bless",
+      })),
     especialidadesFallback()
   );
 
