@@ -27,10 +27,10 @@ export function EspacoSection() {
   return (
     <section id="espaco" className="scroll-mt-16 py-40 md:py-[260px]">
       <motion.div {...fadeUpViewport} className="px-6 pb-24 text-center">
-        <h2 className="font-display text-4xl font-medium tracking-wide text-bless-ink uppercase md:text-5xl">
+        <h2 className="font-display text-4xl font-medium tracking-wide text-brand-ink uppercase md:text-5xl">
           Conheça nosso espaço
         </h2>
-        <p className="mx-auto mt-4 max-w-md text-bless-gray">Cada canto pensado pra você se sentir em casa — e sair diferente de como entrou.</p>
+        <p className="mx-auto mt-4 max-w-md text-brand-gray">Cada canto pensado pra você se sentir em casa — e sair diferente de como entrou.</p>
       </motion.div>
 
       <div className="flex flex-col gap-28 md:gap-40">

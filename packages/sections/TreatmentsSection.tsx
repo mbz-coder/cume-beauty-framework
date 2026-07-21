@@ -23,10 +23,10 @@ export function TreatmentsSection({ especialidades }: { especialidades: Especial
   return (
     <section id="especialidades" className="scroll-mt-16 py-40 md:py-[260px]">
       <motion.div {...fadeUpViewport} className="px-6 pb-24 text-center">
-        <h2 className="font-display text-4xl font-medium tracking-wide text-bless-ink uppercase md:text-5xl">
+        <h2 className="font-display text-4xl font-medium tracking-wide text-brand-ink uppercase md:text-5xl">
           Nossas especialidades
         </h2>
-        <p className="mx-auto mt-4 max-w-md text-bless-gray">
+        <p className="mx-auto mt-4 max-w-md text-brand-gray">
           Cada procedimento pensado pra valorizar sua essência — nunca em série.
         </p>
       </motion.div>
@@ -52,13 +52,13 @@ export function TreatmentsSection({ especialidades }: { especialidades: Especial
                 <div
                   role="img"
                   aria-label={`Foto de ${item.titulo} — em produção`}
-                  className="flex h-full w-full items-center justify-center bg-bless-nude text-bless-primaria-dark/50"
+                  className="flex h-full w-full items-center justify-center bg-brand-nude text-brand-primaria-dark/50"
                 >
                   <span className="font-display text-sm">Foto de {item.titulo} — em produção</span>
                 </div>
               )}
 
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-bless-black/70 to-transparent px-8 py-10 md:px-12">
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-brand-black/70 to-transparent px-8 py-10 md:px-12">
                 <span className="text-xs font-medium tracking-[0.2em] text-white/70 uppercase">
                   {item.especialista}
                 </span>

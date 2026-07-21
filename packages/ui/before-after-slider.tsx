@@ -49,14 +49,14 @@ export function BeforeAfterSlider({ antes, depois, className }: BeforeAfterSlide
     >
       <div className="absolute inset-0">
         <Image src={depois.src} alt={depois.alt} fill sizes="100vw" className="object-cover" draggable={false} />
-        <span className="absolute right-4 bottom-4 rounded-full bg-bless-black/70 px-4 py-1.5 text-xs font-medium tracking-[0.15em] text-white uppercase">
+        <span className="absolute right-4 bottom-4 rounded-full bg-brand-black/70 px-4 py-1.5 text-xs font-medium tracking-[0.15em] text-white uppercase">
           Depois
         </span>
       </div>
 
       <div className="absolute inset-0 overflow-hidden" style={{ clipPath: `inset(0 ${100 - percent}% 0 0)` }}>
         <Image src={antes.src} alt={antes.alt} fill sizes="100vw" className="object-cover" draggable={false} />
-        <span className="absolute bottom-4 left-4 rounded-full bg-bless-black/70 px-4 py-1.5 text-xs font-medium tracking-[0.15em] text-white uppercase">
+        <span className="absolute bottom-4 left-4 rounded-full bg-brand-black/70 px-4 py-1.5 text-xs font-medium tracking-[0.15em] text-white uppercase">
           Antes
         </span>
       </div>

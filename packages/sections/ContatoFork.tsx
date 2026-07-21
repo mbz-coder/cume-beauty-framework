@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { LeadForm } from "@forms/LeadForm";
-import { blessTheme } from "@theme/tokens";
+import { siteConfig } from "@theme/tokens";
 import { SPECIALISTS } from "@specialists/data";
 
 type Interesse = "estetica" | "cabelo";
@@ -15,11 +15,11 @@ type Interesse = "estetica" | "cabelo";
 export function ContatoFork() {
   const [interesse, setInteresse] = useState<Interesse>("estetica");
   const jonathan = SPECIALISTS.jonathan;
-  const waJonathan = `https://wa.me/${blessTheme.whatsapp}?text=${encodeURIComponent(jonathan.waMensagemPadrao)}`;
+  const waJonathan = `https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(jonathan.waMensagemPadrao)}`;
 
   return (
     <div className="rounded-2xl border border-border bg-white p-8">
-      <p className="text-xs font-medium tracking-widest text-bless-gray uppercase">O que você procura?</p>
+      <p className="text-xs font-medium tracking-widest text-brand-gray uppercase">O que você procura?</p>
 
       <div className="mt-4 flex gap-2">
         <button
@@ -27,8 +27,8 @@ export function ContatoFork() {
           onClick={() => setInteresse("estetica")}
           className={`flex-1 border px-4 py-3 text-sm font-medium transition-colors ${
             interesse === "estetica"
-              ? "border-bless-ink bg-bless-ink text-white"
-              : "border-border text-bless-ink hover:border-bless-ink"
+              ? "border-brand-ink bg-brand-ink text-white"
+              : "border-border text-brand-ink hover:border-brand-ink"
           }`}
         >
           Estética, com a Eliana
@@ -38,8 +38,8 @@ export function ContatoFork() {
           onClick={() => setInteresse("cabelo")}
           className={`flex-1 border px-4 py-3 text-sm font-medium transition-colors ${
             interesse === "cabelo"
-              ? "border-bless-ink bg-bless-ink text-white"
-              : "border-border text-bless-ink hover:border-bless-ink"
+              ? "border-brand-ink bg-brand-ink text-white"
+              : "border-border text-brand-ink hover:border-brand-ink"
           }`}
         >
           Cabelo, com o Jonathan
@@ -51,14 +51,14 @@ export function ContatoFork() {
           <LeadForm origem="site-contato" />
         ) : (
           <div className="text-center">
-            <p className="text-sm text-bless-ink/75">
+            <p className="text-sm text-brand-ink/75">
               {jonathan.bio}
             </p>
             <a
               href={waJonathan}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-6 inline-block bg-bless-ink px-8 py-3 text-sm font-medium tracking-wide text-white uppercase hover:bg-bless-primaria-dark"
+              className="mt-6 inline-block bg-brand-ink px-8 py-3 text-sm font-medium tracking-wide text-white uppercase hover:bg-brand-primaria-dark"
             >
               Falar no WhatsApp
             </a>

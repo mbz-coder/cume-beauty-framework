@@ -10,13 +10,13 @@ export function Manifesto() {
     <section className="flex flex-col items-center justify-center px-6 py-[220px] text-center">
       <motion.p
         {...fadeUpViewport}
-        className="max-w-2xl font-display text-3xl leading-snug font-medium text-bless-ink md:text-5xl"
+        className="max-w-2xl font-display text-3xl leading-snug font-medium text-brand-ink md:text-5xl"
       >
         Você merece gostar do reflexo que vê todos os dias.
       </motion.p>
       <motion.p
         {...fadeUpViewport}
-        className="mt-6 max-w-sm text-sm text-bless-gray"
+        className="mt-6 max-w-sm text-sm text-brand-gray"
       >
         Estética, cabelo e autoestima — tratados com a mesma técnica, o mesmo cuidado.
       </motion.p>

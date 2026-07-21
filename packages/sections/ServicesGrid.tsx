@@ -16,11 +16,11 @@ interface ServicesGridProps {
 
 export function ServicesGrid({ titulo, beneficios }: ServicesGridProps) {
   return (
-    <section className="border-b border-border bg-bless-nude/20">
+    <section className="border-b border-border bg-brand-nude/20">
       <div className="mx-auto max-w-[1400px] px-6 py-24 md:py-32">
         <motion.h2
           {...fadeUpViewport}
-          className="text-center font-display text-3xl text-bless-ink md:text-4xl"
+          className="text-center font-display text-3xl text-brand-ink md:text-4xl"
         >
           {titulo}
         </motion.h2>
@@ -42,8 +42,8 @@ export function ServicesGrid({ titulo, beneficios }: ServicesGridProps) {
               <span className="text-3xl" aria-hidden>
                 {beneficio.icone}
               </span>
-              <h3 className="mt-4 font-display text-lg text-bless-ink">{beneficio.titulo}</h3>
-              <p className="mt-2 text-sm text-bless-ink/70">{beneficio.texto}</p>
+              <h3 className="mt-4 font-display text-lg text-brand-ink">{beneficio.titulo}</h3>
+              <p className="mt-2 text-sm text-brand-ink/70">{beneficio.texto}</p>
             </motion.div>
           ))}
         </div>

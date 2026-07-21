@@ -24,10 +24,10 @@ export function ResultadosSection() {
   return (
     <section id="resultados" className="scroll-mt-16 py-40 md:py-[260px]">
       <motion.div {...fadeUpViewport} className="px-6 pb-24 text-center">
-        <h2 className="font-display text-4xl font-medium tracking-wide text-bless-ink uppercase md:text-5xl">
+        <h2 className="font-display text-4xl font-medium tracking-wide text-brand-ink uppercase md:text-5xl">
           Resultados
         </h2>
-        <p className="mx-auto mt-4 max-w-md text-bless-gray">
+        <p className="mx-auto mt-4 max-w-md text-brand-gray">
           Transformação real, contada por quem viveu — sempre com avaliação antes de qualquer procedimento.
         </p>
       </motion.div>
@@ -40,8 +40,8 @@ export function ResultadosSection() {
             className="mx-auto w-full max-w-[1600px] px-6"
           >
             <BeforeAfterSlider antes={par.antes} depois={par.depois} />
-            <p className="mt-6 text-center font-display text-lg text-bless-ink">{par.tratamento}</p>
-            <p className="mt-1 text-center text-xs text-bless-gray">Arraste pra comparar</p>
+            <p className="mt-6 text-center font-display text-lg text-brand-ink">{par.tratamento}</p>
+            <p className="mt-1 text-center text-xs text-brand-gray">Arraste pra comparar</p>
           </motion.div>
         ))}
       </div>

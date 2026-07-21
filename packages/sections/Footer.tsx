@@ -1,22 +1,22 @@
 import Link from "next/link";
-import { blessTheme } from "@theme/tokens";
+import { siteConfig } from "@theme/tokens";
 
 // Preto reservado pra footer/CTA/algumas divisões (2026-07-17) — só 3 blocos
 // escuros no site inteiro (Hero, CTA, Footer), o resto respira claro.
 export function Footer() {
-  const waLink = `https://wa.me/${blessTheme.whatsapp}?text=${encodeURIComponent(
+  const waLink = `https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(
     "Oi Eliana! Vim pelo site e quero agendar uma avaliação."
   )}`;
 
   const mapsLink = "https://www.google.com/maps/search/?api=1&query=Bless+Hair+%26+Care+Pirituba+S%C3%A3o+Paulo";
 
   return (
-    <footer className="bg-bless-black">
+    <footer className="bg-brand-black">
       <div className="mx-auto max-w-[1400px] px-6 py-24 md:py-32">
         <div className="grid gap-14 md:grid-cols-3 md:gap-10">
           <div>
             <p className="font-display text-2xl text-white">
-              Bless <span className="text-bless-gold-light">Hair &amp; Care</span>
+              Bless <span className="text-brand-gold-light">Hair &amp; Care</span>
             </p>
             <p className="mt-4 max-w-xs text-sm text-white/50">
               Beleza que cuida. Sobrancelha, laser, pele e autoestima — sempre com avaliação
@@ -27,28 +27,28 @@ export function Footer() {
           <div>
             <p className="text-xs font-medium tracking-[0.2em] text-white/40 uppercase">Navegação</p>
             <nav className="mt-5 flex flex-col gap-3 text-sm text-white/60">
-              <Link href="/" className="w-fit transition-colors hover:text-bless-gold-light">Início</Link>
-              <Link href="/sobre" className="w-fit transition-colors hover:text-bless-gold-light">Sobre</Link>
-              <Link href="/#especialistas" className="w-fit transition-colors hover:text-bless-gold-light">Especialistas</Link>
-              <Link href="/contato" className="w-fit transition-colors hover:text-bless-gold-light">Contato</Link>
+              <Link href="/" className="w-fit transition-colors hover:text-brand-gold-light">Início</Link>
+              <Link href="/sobre" className="w-fit transition-colors hover:text-brand-gold-light">Sobre</Link>
+              <Link href="/#especialistas" className="w-fit transition-colors hover:text-brand-gold-light">Especialistas</Link>
+              <Link href="/contato" className="w-fit transition-colors hover:text-brand-gold-light">Contato</Link>
             </nav>
           </div>
 
           <div>
             <p className="text-xs font-medium tracking-[0.2em] text-white/40 uppercase">Contato</p>
             <div className="mt-5 flex flex-col gap-3 text-sm text-white/60">
-              <a href={waLink} target="_blank" rel="noopener noreferrer" className="w-fit transition-colors hover:text-bless-gold-light">
+              <a href={waLink} target="_blank" rel="noopener noreferrer" className="w-fit transition-colors hover:text-brand-gold-light">
                 WhatsApp
               </a>
               <a
-                href={`https://instagram.com/${blessTheme.instagram}`}
+                href={`https://instagram.com/${siteConfig.instagram}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-fit transition-colors hover:text-bless-gold-light"
+                className="w-fit transition-colors hover:text-brand-gold-light"
               >
-                @{blessTheme.instagram}
+                @{siteConfig.instagram}
               </a>
-              <a href={mapsLink} target="_blank" rel="noopener noreferrer" className="w-fit transition-colors hover:text-bless-gold-light">
+              <a href={mapsLink} target="_blank" rel="noopener noreferrer" className="w-fit transition-colors hover:text-brand-gold-light">
                 Pirituba, Zona Oeste de São Paulo
               </a>
             </div>

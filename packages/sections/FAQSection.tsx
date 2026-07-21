@@ -14,17 +14,17 @@ export function FAQSection({ faq }: { faq: FaqItem[] }) {
   return (
     <section className="border-t border-border">
       <div className="mx-auto max-w-3xl px-6 py-32 md:py-40">
-        <h2 className="text-center font-display text-3xl text-bless-ink md:text-4xl">
+        <h2 className="text-center font-display text-3xl text-brand-ink md:text-4xl">
           Perguntas frequentes
         </h2>
 
         <Accordion className="mt-12">
           {faq.map((item, i) => (
             <AccordionItem key={item.pergunta} value={String(i)}>
-              <AccordionTrigger className="font-display text-base text-bless-ink">
+              <AccordionTrigger className="font-display text-base text-brand-ink">
                 {item.pergunta}
               </AccordionTrigger>
-              <AccordionContent className="text-bless-ink/70">{item.resposta}</AccordionContent>
+              <AccordionContent className="text-brand-ink/70">{item.resposta}</AccordionContent>
             </AccordionItem>
           ))}
         </Accordion>

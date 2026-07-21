@@ -12,7 +12,7 @@ interface Depoimento {
 export function Testimonials({ depoimentos }: { depoimentos: Depoimento[] }) {
   return (
     <section className="mx-auto max-w-[1000px] px-6 py-40 md:py-[220px]">
-      <motion.h2 {...fadeUpViewport} className="text-center font-display text-3xl text-bless-ink md:text-4xl">
+      <motion.h2 {...fadeUpViewport} className="text-center font-display text-3xl text-brand-ink md:text-4xl">
         Histórias que começaram com uma dúvida
       </motion.h2>
 
@@ -30,13 +30,13 @@ export function Testimonials({ depoimentos }: { depoimentos: Depoimento[] }) {
             }}
             className={`text-center ${i % 2 === 1 ? "md:pl-16" : "md:pr-16"}`}
           >
-            <blockquote className="font-display text-2xl leading-snug text-bless-ink italic md:text-3xl">
+            <blockquote className="font-display text-2xl leading-snug text-brand-ink italic md:text-3xl">
               &ldquo;{depoimento.texto}&rdquo;
             </blockquote>
-            <figcaption className="mt-5 text-sm text-bless-gray">
+            <figcaption className="mt-5 text-sm text-brand-gray">
               — {depoimento.autor}
               {depoimento.placeholder && (
-                <span className="ml-2 rounded-full bg-bless-primaria/10 px-2 py-0.5 text-xs text-bless-primaria-dark">
+                <span className="ml-2 rounded-full bg-brand-primaria/10 px-2 py-0.5 text-xs text-brand-primaria-dark">
                   em produção
                 </span>
               )}

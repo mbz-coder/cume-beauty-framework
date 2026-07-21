@@ -5,7 +5,7 @@ import { ServicesGrid } from "@sections/ServicesGrid";
 import { FAQSection } from "@sections/FAQSection";
 import { CTASection } from "@sections/CTASection";
 import { buildMetadata } from "@seo/metadata";
-import { blessTheme } from "@theme/tokens";
+import { siteConfig } from "@theme/tokens";
 import { getPublishedSpecialists, getSpecialist } from "@specialists/data";
 
 export function generateStaticParams() {
@@ -31,7 +31,7 @@ export default async function SpecialistPage(props: { params: Promise<{ slug: st
   const specialist = getSpecialist(slug);
   if (!specialist) notFound();
 
-  const waHref = `https://wa.me/${blessTheme.whatsapp}?text=${encodeURIComponent(specialist.waMensagemPadrao)}`;
+  const waHref = `https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(specialist.waMensagemPadrao)}`;
 
   // Página assume 100% a paleta do especialista (dourado ou vinho, nunca
   // misturado) — header/footer ficam fora desta div, sempre dourado institucional.
@@ -61,7 +61,7 @@ export default async function SpecialistPage(props: { params: Promise<{ slug: st
           procedimentoPreSelecionado={specialist.procedimentoPreSelecionado}
         />
       ) : (
-        <section className="bg-bless-ink">
+        <section className="bg-brand-ink">
           <div className="mx-auto max-w-2xl px-6 py-24 text-center md:py-32">
             <h2 className="font-display text-3xl text-white md:text-4xl">{specialist.ctaPagina}</h2>
             <p className="mt-4 text-white/70">
@@ -71,7 +71,7 @@ export default async function SpecialistPage(props: { params: Promise<{ slug: st
               href={waHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-8 inline-block rounded-md bg-bless-primaria px-8 py-3 font-medium text-white hover:bg-bless-primaria-dark"
+              className="mt-8 inline-block rounded-md bg-brand-primaria px-8 py-3 font-medium text-white hover:bg-brand-primaria-dark"
             >
               Falar no WhatsApp
             </a>

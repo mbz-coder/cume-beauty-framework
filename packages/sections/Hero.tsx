@@ -40,7 +40,7 @@ export function Hero({
     <section
       className={cn(
         "relative flex min-h-screen items-center overflow-hidden",
-        hasVideo ? "-mt-16" : "border-b border-border bg-bless-nude"
+        hasVideo ? "-mt-16" : "border-b border-border bg-brand-nude"
       )}
     >
       {hasVideo && (
@@ -74,7 +74,7 @@ export function Hero({
             <span
               className={cn(
                 "inline-block text-xs font-medium tracking-[0.2em] uppercase",
-                hasVideo ? "text-white/70" : "text-bless-gray"
+                hasVideo ? "text-white/70" : "text-brand-gray"
               )}
             >
               {badge}
@@ -85,13 +85,13 @@ export function Hero({
             className={cn(
               "font-display text-4xl leading-[1.15] font-medium md:text-6xl",
               badge && "mt-6",
-              hasVideo ? "text-white" : "text-bless-ink"
+              hasVideo ? "text-white" : "text-brand-ink"
             )}
           >
             {headline.map((line, i) => (
               <span
                 key={i}
-                className={i === headlineHighlightIndex ? "text-bless-gold-light" : undefined}
+                className={i === headlineHighlightIndex ? "text-brand-gold-light" : undefined}
               >
                 {line}
                 {i < headline.length - 1 ? " " : ""}
@@ -100,7 +100,7 @@ export function Hero({
           </h1>
 
           {sub && (
-            <p className={cn("mx-auto mt-6 max-w-md text-base", hasVideo ? "text-white/80" : "text-bless-gray")}>
+            <p className={cn("mx-auto mt-6 max-w-md text-base", hasVideo ? "text-white/80" : "text-brand-gray")}>
               {sub}
             </p>
           )}
@@ -112,8 +112,8 @@ export function Hero({
                 buttonVariants({ variant: "outline" }),
                 "h-[52px] rounded-full px-10 text-sm font-medium tracking-wide",
                 hasVideo
-                  ? "border-white/80 bg-transparent text-white hover:border-white hover:bg-white hover:text-bless-ink"
-                  : "border-bless-ink/30 bg-transparent text-bless-ink hover:border-bless-ink hover:bg-bless-ink hover:text-white"
+                  ? "border-white/80 bg-transparent text-white hover:border-white hover:bg-white hover:text-brand-ink"
+                  : "border-brand-ink/30 bg-transparent text-brand-ink hover:border-brand-ink hover:bg-brand-ink hover:text-white"
               )}
             >
               {ctaPrincipal}
@@ -125,7 +125,7 @@ export function Hero({
                 rel="noopener noreferrer"
                 className={cn(
                   "text-xs font-medium tracking-widest uppercase underline-offset-4 hover:underline",
-                  hasVideo ? "text-white/80" : "text-bless-gray"
+                  hasVideo ? "text-white/80" : "text-brand-gray"
                 )}
               >
                 {ctaSecundario}

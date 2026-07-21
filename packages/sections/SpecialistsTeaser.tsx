@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { fadeUpViewport } from "@theme/motion";
 import { getPublishedSpecialists } from "@specialists/data";
-import { blessTheme } from "@theme/tokens";
+import { siteConfig } from "@theme/tokens";
 
 // Uma narrativa só ("Especialistas"), não duas seções separadas tipo
 // departamento. Jonathan à esquerda (impacto, editorial), Eliana à direita
@@ -25,21 +25,21 @@ export function SpecialistsTeaser() {
   return (
     <section id="especialistas" className="scroll-mt-16 py-40 md:py-[260px]">
       <motion.div {...fadeUpViewport} className="px-6 pb-24 text-center">
-        <h2 className="font-display text-4xl font-medium tracking-wide text-bless-ink uppercase md:text-5xl">
+        <h2 className="font-display text-4xl font-medium tracking-wide text-brand-ink uppercase md:text-5xl">
           Especialistas
         </h2>
-        <p className="mx-auto mt-4 max-w-md text-sm text-bless-gray">
+        <p className="mx-auto mt-4 max-w-md text-sm text-brand-gray">
           Cada transformação começa pelas mãos de quem entende que beleza também é cuidado.
         </p>
       </motion.div>
 
       <div className={`grid gap-px bg-border ${specialists.length > 1 ? "md:grid-cols-2" : "mx-auto max-w-xl"}`}>
         {specialists.map((specialist) => {
-          const waHref = `https://wa.me/${blessTheme.whatsapp}?text=${encodeURIComponent(specialist.waMensagemPadrao)}`;
+          const waHref = `https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(specialist.waMensagemPadrao)}`;
           const isConversion = specialist.variant === "conversion";
 
           return (
-            <div key={specialist.slug} className="group relative h-[80vh] overflow-hidden bg-bless-nude md:h-[85vh]">
+            <div key={specialist.slug} className="group relative h-[80vh] overflow-hidden bg-brand-nude md:h-[85vh]">
               <Link
                 href={`/especialistas/${specialist.slug}`}
                 className="absolute inset-0"
@@ -56,7 +56,7 @@ export function SpecialistsTeaser() {
                   />
                 ) : (
                   <div className="flex h-full w-full items-center justify-center">
-                    <span className="font-display text-sm text-bless-gray">
+                    <span className="font-display text-sm text-brand-gray">
                       Foto de {specialist.nome} — em produção
                     </span>
                   </div>
@@ -66,7 +66,7 @@ export function SpecialistsTeaser() {
 
               <div className="pointer-events-none absolute inset-x-0 bottom-0 px-8 pb-12 text-center transition-transform duration-500 ease-out group-hover:-translate-y-1 md:text-left">
                 <span
-                  className="mb-4 block h-px w-10 scale-x-0 bg-bless-gold-light opacity-0 transition-all duration-500 ease-out group-hover:scale-x-100 group-hover:opacity-100 md:mx-0"
+                  className="mb-4 block h-px w-10 scale-x-0 bg-brand-gold-light opacity-0 transition-all duration-500 ease-out group-hover:scale-x-100 group-hover:opacity-100 md:mx-0"
                   aria-hidden
                 />
                 <h3 className="font-display text-4xl font-medium text-white">{specialist.nome}</h3>
@@ -78,14 +78,14 @@ export function SpecialistsTeaser() {
                 <div className="pointer-events-auto mt-7 flex flex-col items-center gap-3 sm:flex-row sm:justify-center md:justify-start">
                   <Link
                     href={`/especialistas/${specialist.slug}`}
-                    className="inline-flex h-11 items-center rounded-full border border-white/50 px-6 text-xs font-medium tracking-widest text-white uppercase transition-colors hover:bg-white hover:text-bless-ink"
+                    className="inline-flex h-11 items-center rounded-full border border-white/50 px-6 text-xs font-medium tracking-widest text-white uppercase transition-colors hover:bg-white hover:text-brand-ink"
                   >
                     Conhecer {specialist.artigo} {specialist.nome}
                   </Link>
                   {isConversion ? (
                     <Link
                       href="#agendar"
-                      className="inline-flex h-11 items-center rounded-full border border-bless-gold-light/70 px-6 text-xs font-medium tracking-widest text-white uppercase transition-colors hover:bg-bless-primaria"
+                      className="inline-flex h-11 items-center rounded-full border border-brand-gold-light/70 px-6 text-xs font-medium tracking-widest text-white uppercase transition-colors hover:bg-brand-primaria"
                     >
                       {specialist.ctaTeaser}
                     </Link>
@@ -94,7 +94,7 @@ export function SpecialistsTeaser() {
                       href={waHref}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex h-11 items-center rounded-full border border-bless-gold-light/70 px-6 text-xs font-medium tracking-widest text-white uppercase transition-colors hover:bg-bless-primaria"
+                      className="inline-flex h-11 items-center rounded-full border border-brand-gold-light/70 px-6 text-xs font-medium tracking-widest text-white uppercase transition-colors hover:bg-brand-primaria"
                     >
                       {specialist.ctaTeaser}
                     </a>

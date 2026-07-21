@@ -45,9 +45,9 @@ export function Header() {
       <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between px-6">
         <Link
           href="/"
-          className={cn("font-display text-lg tracking-wide", transparent ? "text-white" : "text-bless-ink")}
+          className={cn("font-display text-lg tracking-wide", transparent ? "text-white" : "text-brand-ink")}
         >
-          Bless <span className={transparent ? "text-bless-gold-light" : "text-bless-primaria"}>Hair &amp; Care</span>
+          Bless <span className={transparent ? "text-brand-gold-light" : "text-brand-primaria"}>Hair &amp; Care</span>
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">
@@ -57,7 +57,7 @@ export function Header() {
               href={link.href}
               className={cn(
                 "text-[0.7rem] font-medium tracking-[0.15em] uppercase transition-colors",
-                transparent ? "text-white/80 hover:text-white" : "text-bless-ink/70 hover:text-bless-primaria"
+                transparent ? "text-white/80 hover:text-white" : "text-brand-ink/70 hover:text-brand-primaria"
               )}
             >
               {link.label}
@@ -72,7 +72,7 @@ export function Header() {
             "hidden h-9 rounded-full px-6 text-[0.7rem] font-medium tracking-[0.1em] md:inline-flex",
             transparent
               ? "border-white/40 bg-transparent text-white hover:bg-white/10"
-              : "border-bless-ink/15 bg-transparent text-bless-ink hover:bg-bless-ink hover:text-white"
+              : "border-brand-ink/15 bg-transparent text-brand-ink hover:bg-brand-ink hover:text-white"
           )}
         >
           Agendar avaliação
@@ -81,7 +81,7 @@ export function Header() {
         <button
           type="button"
           aria-label={open ? "Fechar menu" : "Abrir menu"}
-          className={transparent ? "text-white md:hidden" : "text-bless-ink md:hidden"}
+          className={transparent ? "text-white md:hidden" : "text-brand-ink md:hidden"}
           onClick={() => setOpen((v) => !v)}
         >
           {open ? <X size={24} /> : <Menu size={24} />}
@@ -94,7 +94,7 @@ export function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className="py-2 text-sm font-medium text-bless-ink/80 hover:text-bless-primaria"
+              className="py-2 text-sm font-medium text-brand-ink/80 hover:text-brand-primaria"
               onClick={() => setOpen(false)}
             >
               {link.label}

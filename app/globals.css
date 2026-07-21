@@ -10,14 +10,14 @@
   --font-sans: var(--font-inter);
   --font-display: var(--font-cormorant);
   --font-body: var(--font-inter);
-  --color-bless-primaria: var(--bless-primaria);
-  --color-bless-primaria-dark: var(--bless-primaria-dark);
-  --color-bless-nude: var(--bless-nude);
-  --color-bless-ink: var(--bless-ink);
-  --color-bless-gray: var(--bless-gray);
-  --color-bless-black: var(--bless-black);
-  --color-bless-gold-light: var(--bless-gold-light);
-  --color-bless-wood: var(--bless-wood);
+  --color-brand-primaria: var(--brand-primaria);
+  --color-brand-primaria-dark: var(--brand-primaria-dark);
+  --color-brand-nude: var(--brand-nude);
+  --color-brand-ink: var(--brand-ink);
+  --color-brand-gray: var(--brand-gray);
+  --color-brand-black: var(--brand-black);
+  --color-brand-gold-light: var(--brand-gold-light);
+  --color-brand-wood: var(--brand-wood);
   --color-expansao-1: var(--expansao-1);
   --color-expansao-2: var(--expansao-2);
   --color-expansao-3: var(--expansao-3);
@@ -64,14 +64,14 @@
      substitui a leitura mais brilhante do Bless_Documentacao_de_Marca.pdf):
      fosco, editorial, nada de dourado brilhante — inspirado em Aesop/Le
      Labo/Aman Resorts, não em referência de salão. */
-  --bless-primaria: #b89a63;
-  --bless-primaria-dark: #9c814f;
-  --bless-gold-light: #cdb483;
-  --bless-nude: #f6f4ef;
-  --bless-ink: #1d1d1d;
-  --bless-gray: #787878;
-  --bless-black: #111111;
-  --bless-wood: #5c4536;
+  --brand-primaria: #b89a63;
+  --brand-primaria-dark: #9c814f;
+  --brand-gold-light: #cdb483;
+  --brand-nude: #f6f4ef;
+  --brand-ink: #1d1d1d;
+  --brand-gray: #787878;
+  --brand-black: #111111;
+  --brand-wood: #5c4536;
 
   /* Sobrancelhas Bless — sub-marca de Eliana Paz, aplicada só na página dela
      via .theme-sobrancelhas (nunca misturada com o dourado na mesma seção). */
@@ -86,24 +86,24 @@
   --expansao-2: #2e5266;
   --expansao-3: #a85c32;
 
-  --background: var(--bless-nude);
-  --foreground: var(--bless-ink);
+  --background: var(--brand-nude);
+  --foreground: var(--brand-ink);
   --card: #ffffff;
-  --card-foreground: var(--bless-ink);
+  --card-foreground: var(--brand-ink);
   --popover: #ffffff;
-  --popover-foreground: var(--bless-ink);
-  --primary: var(--bless-primaria);
+  --popover-foreground: var(--brand-ink);
+  --primary: var(--brand-primaria);
   --primary-foreground: #ffffff;
   --secondary: #ffffff;
-  --secondary-foreground: var(--bless-ink);
+  --secondary-foreground: var(--brand-ink);
   --muted: #ffffff;
-  --muted-foreground: var(--bless-gray);
+  --muted-foreground: var(--brand-gray);
   --accent: #ffffff;
-  --accent-foreground: var(--bless-ink);
+  --accent-foreground: var(--brand-ink);
   --destructive: oklch(0.577 0.245 27.325);
   --border: #e3e1da;
   --input: #e3e1da;
-  --ring: var(--bless-primaria);
+  --ring: var(--brand-primaria);
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
@@ -122,10 +122,10 @@
    sempre na paleta dourada institucional (fora desta classe). As duas
    paletas nunca se misturam na mesma peça — regra do doc de marca. */
 .theme-sobrancelhas {
-  --bless-primaria: var(--sobrancelhas-vinho);
-  --bless-primaria-dark: var(--sobrancelhas-vinho-escuro);
-  --bless-nude: var(--sobrancelhas-creme);
-  --bless-ink: var(--sobrancelhas-vinho-escuro);
+  --brand-primaria: var(--sobrancelhas-vinho);
+  --brand-primaria-dark: var(--sobrancelhas-vinho-escuro);
+  --brand-nude: var(--sobrancelhas-creme);
+  --brand-ink: var(--sobrancelhas-vinho-escuro);
 
   --primary: var(--sobrancelhas-vinho);
   --secondary: var(--sobrancelhas-creme);

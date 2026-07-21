@@ -67,8 +67,8 @@ export function LeadForm({
   if (status === "success") {
     return (
       <div className={className}>
-        <p className="font-display text-2xl text-bless-ink">Recebemos seu contato!</p>
-        <p className="mt-2 text-bless-ink/80">
+        <p className="font-display text-2xl text-brand-ink">Recebemos seu contato!</p>
+        <p className="mt-2 text-brand-ink/80">
           A equipe da Bless entra em contato pelo WhatsApp em breve pra confirmar sua avaliação.
         </p>
       </div>
@@ -79,27 +79,27 @@ export function LeadForm({
     <form onSubmit={handleSubmit(onSubmit)} className={className} noValidate>
       <div className="space-y-4">
         <div>
-          <label htmlFor="nome" className="block text-sm font-medium text-bless-ink">
+          <label htmlFor="nome" className="block text-sm font-medium text-brand-ink">
             Nome completo
           </label>
           <input
             id="nome"
             type="text"
-            className="mt-1 w-full rounded-md border border-input bg-background px-3 py-2 text-bless-ink focus:border-bless-primaria focus:outline-none"
+            className="mt-1 w-full rounded-md border border-input bg-background px-3 py-2 text-brand-ink focus:border-brand-primaria focus:outline-none"
             {...register("nome")}
           />
           {errors.nome && <p className="mt-1 text-sm text-destructive">{errors.nome.message}</p>}
         </div>
 
         <div>
-          <label htmlFor="telefone" className="block text-sm font-medium text-bless-ink">
+          <label htmlFor="telefone" className="block text-sm font-medium text-brand-ink">
             WhatsApp (com DDD)
           </label>
           <input
             id="telefone"
             type="tel"
             placeholder="(11) 90000-0000"
-            className="mt-1 w-full rounded-md border border-input bg-background px-3 py-2 text-bless-ink focus:border-bless-primaria focus:outline-none"
+            className="mt-1 w-full rounded-md border border-input bg-background px-3 py-2 text-brand-ink focus:border-brand-primaria focus:outline-none"
             {...register("telefone")}
           />
           {errors.telefone && (
@@ -108,12 +108,12 @@ export function LeadForm({
         </div>
 
         <div>
-          <label htmlFor="procedimento" className="block text-sm font-medium text-bless-ink">
+          <label htmlFor="procedimento" className="block text-sm font-medium text-brand-ink">
             Procedimento de interesse
           </label>
           <select
             id="procedimento"
-            className="mt-1 w-full rounded-md border border-input bg-background px-3 py-2 text-bless-ink focus:border-bless-primaria focus:outline-none"
+            className="mt-1 w-full rounded-md border border-input bg-background px-3 py-2 text-brand-ink focus:border-brand-primaria focus:outline-none"
             {...register("procedimento")}
           >
             {PROCEDIMENTOS.map((proc) => (
@@ -128,7 +128,7 @@ export function LeadForm({
       <Button
         type="submit"
         disabled={isSubmitting}
-        className="mt-6 h-[52px] w-full rounded-full bg-bless-primaria text-sm font-medium hover:bg-bless-primaria-dark"
+        className="mt-6 h-[52px] w-full rounded-full bg-brand-primaria text-sm font-medium hover:bg-brand-primaria-dark"
       >
         {isSubmitting ? "Enviando..." : ctaLabel}
       </Button>
