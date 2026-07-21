@@ -63,7 +63,21 @@ const BLESS_FALLBACK: BrandTheme = {
 // tokens de design-system/layout, nao algo que o Brand Analyst consegue
 // diagnosticar a partir de logo/fotos — por isso BrandTheme ja declara
 // eles como opcionais.
-export async function getBrandTheme(slug: string = "bless"): Promise<BrandTheme> {
+//
+// typography tambem fica com o fallback por enquanto: brand.tipografiaTitulo/
+// Texto sao sugestao textual pra humano/designer (ex: "serif elegante, tipo
+// Playfair Display"), nao um valor de CSS font-family/var() utilizavel
+// direto -- injetar aquele texto aqui quebraria o rendering. Mapear
+// descricao -> fonte real carregada e trabalho futuro (ex: escolher de uma
+// whitelist curada por palavra-chave), nao v0.
+//
+// slug e OBRIGATORIO de proposito (sem default) -- este app e "um deploy =
+// um cliente" (mesmo padrao de buscarConteudoRepository via
+// resolverSlugFromEnv() em app/page.tsx). Nao hardcodear "bless" aqui evita
+// que o Website Builder fique amarrado a um cliente especifico; um cliente
+// novo (ninja, advocaciaabc, petshopx, ...) e so uma nova env var
+// CUME_CLIENTE_SLUG no deploy dele, zero mudanca de codigo.
+export async function getBrandTheme(slug: string): Promise<BrandTheme> {
   const brand = await buscarBrandIdentity(slug);
   if (!brand) return BLESS_FALLBACK;
 
@@ -73,10 +87,7 @@ export async function getBrandTheme(slug: string = "bless"): Promise<BrandTheme>
       secondary: brand.paletaSecundaria[0] ?? BLESS_FALLBACK.colors.secondary,
       accent: brand.paletaPrimaria[1] ?? brand.paletaSecundaria[1] ?? BLESS_FALLBACK.colors.accent,
     },
-    typography: {
-      display: brand.tipografiaTitulo ?? BLESS_FALLBACK.typography.display,
-      body: brand.tipografiaTexto ?? BLESS_FALLBACK.typography.body,
-    },
+    typography: BLESS_FALLBACK.typography,
     logo: brand.logoUrl ?? undefined,
     borderRadius: BLESS_FALLBACK.borderRadius,
     spacing: BLESS_FALLBACK.spacing,
