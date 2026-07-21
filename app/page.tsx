@@ -11,6 +11,7 @@ import { FAQSection } from "@sections/FAQSection";
 import { CTASection } from "@sections/CTASection";
 import { JsonLd, localBusinessSchema } from "@seo/JsonLd";
 import { buildMetadata } from "@seo/metadata";
+import { buscarConteudoRepository, escolherOuFallback, resolverSlugFromEnv } from "@mbz-coder/cume-content-sdk";
 
 export const metadata: Metadata = buildMetadata({
   title: "Bless Hair & Care | Beleza que cuida — Pirituba, Zona Oeste SP",
@@ -19,7 +20,36 @@ export const metadata: Metadata = buildMetadata({
   path: "/",
 });
 
-export default function HomePage() {
+// FAQ hardcoded aqui é o fallback local — usado só enquanto o Content
+// Repository não tiver FAQ cadastrado pra este cliente (ver
+// lib/content/contentProvider.ts). Hoje o Repository já tem FAQ real da
+// Bless em produção, então na prática esse array só entra em cena se a
+// API do Content Repository cair.
+const faqFallback = [
+  {
+    pergunta: "Preciso saber exatamente o que quero antes de agendar?",
+    resposta: "Não. A avaliação existe justamente pra isso — você chega com a dúvida, sai com o protocolo certo.",
+  },
+  {
+    pergunta: "Vocês fazem promoção ou desconto?",
+    resposta: "Não trabalhamos com desconto. Quando faz sentido dar algo a mais, é brinde ou upgrade — nunca abaixamos o valor do serviço.",
+  },
+  {
+    pergunta: "Como funciona o primeiro atendimento?",
+    resposta: "Começa sempre por uma avaliação — entendemos sua pele, sua rotina e seu objetivo antes de indicar qualquer procedimento.",
+  },
+];
+
+export default async function HomePage() {
+  const repository = await buscarConteudoRepository(resolverSlugFromEnv());
+  const faq = escolherOuFallback(
+    repository?.faq
+      .slice()
+      .sort((a, b) => a.ordem - b.ordem)
+      .map((f) => ({ pergunta: f.pergunta, resposta: f.resposta })),
+    faqFallback
+  );
+
   return (
     <>
       <JsonLd data={localBusinessSchema()} />
@@ -55,22 +85,7 @@ export default function HomePage() {
         ]}
       />
 
-      <FAQSection
-        faq={[
-          {
-            pergunta: "Preciso saber exatamente o que quero antes de agendar?",
-            resposta: "Não. A avaliação existe justamente pra isso — você chega com a dúvida, sai com o protocolo certo.",
-          },
-          {
-            pergunta: "Vocês fazem promoção ou desconto?",
-            resposta: "Não trabalhamos com desconto. Quando faz sentido dar algo a mais, é brinde ou upgrade — nunca abaixamos o valor do serviço.",
-          },
-          {
-            pergunta: "Como funciona o primeiro atendimento?",
-            resposta: "Começa sempre por uma avaliação — entendemos sua pele, sua rotina e seu objetivo antes de indicar qualquer procedimento.",
-          },
-        ]}
-      />
+      <FAQSection faq={faq} />
 
       <CTASection
         titulo="Agende sua avaliação"
