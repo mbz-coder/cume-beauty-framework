@@ -31,6 +31,8 @@ export async function generateMetadata(): Promise<Metadata> {
     title: repository?.seo?.metaTitulo ?? metaFallback.title,
     description: repository?.seo?.metaDescricao ?? metaFallback.description,
     path: "/",
+    dominio: repository?.dominioPrincipal ?? undefined,
+    siteName: repository?.hero.nome,
   });
 }
 
@@ -99,7 +101,15 @@ export default async function HomePage() {
 
   return (
     <>
-      <JsonLd data={localBusinessSchema({ nome: repository?.hero.nome })} />
+      <JsonLd
+        data={localBusinessSchema({
+          nome: repository?.hero.nome,
+          whatsappPrincipal,
+          cidade: repository?.hero.cidade ?? undefined,
+          estado: repository?.hero.estado ?? undefined,
+          dominio: repository?.dominioPrincipal ?? undefined,
+        })}
+      />
       <JsonLd data={faqPageSchema(faq)} />
       {serviceListSchema(
         repository?.servicos.filter((servico) => servico.ativo) ?? especialidades.map((e) => ({ nome: e.titulo, descricao: e.texto }))

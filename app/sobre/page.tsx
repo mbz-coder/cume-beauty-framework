@@ -2,13 +2,19 @@ import type { Metadata } from "next";
 import { Manifesto } from "@sections/Manifesto";
 import { CTASection } from "@sections/CTASection";
 import { buildMetadata } from "@seo/metadata";
+import { buscarConteudoRepository, resolverSlugFromEnv } from "@mbz-coder/cume-content-sdk";
 
-export const metadata: Metadata = buildMetadata({
-  title: "Sobre a Bless Hair & Care",
-  description:
-    "Conheça a Bless Hair & Care: estúdio de estética e cabelo em Pirituba, Zona Oeste de São Paulo, guiado por avaliação e resultado, nunca por promoção.",
-  path: "/sobre",
-});
+export async function generateMetadata(): Promise<Metadata> {
+  const repository = await buscarConteudoRepository(resolverSlugFromEnv());
+  return buildMetadata({
+    title: "Sobre a Bless Hair & Care",
+    description:
+      "Conheça a Bless Hair & Care: estúdio de estética e cabelo em Pirituba, Zona Oeste de São Paulo, guiado por avaliação e resultado, nunca por promoção.",
+    path: "/sobre",
+    dominio: repository?.dominioPrincipal ?? undefined,
+    siteName: repository?.hero.nome,
+  });
+}
 
 export default function SobrePage() {
   return (

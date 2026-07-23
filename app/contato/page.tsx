@@ -3,12 +3,17 @@ import { ContatoFork } from "@sections/ContatoFork";
 import { buildMetadata } from "@seo/metadata";
 import { buscarConteudoRepository, resolverSlugFromEnv } from "@mbz-coder/cume-content-sdk";
 
-export const metadata: Metadata = buildMetadata({
-  title: "Contato",
-  description:
-    "Agende sua avaliação na Bless Hair & Care, em Pirituba, Zona Oeste de São Paulo, ou fale direto pelo WhatsApp.",
-  path: "/contato",
-});
+export async function generateMetadata(): Promise<Metadata> {
+  const repository = await buscarConteudoRepository(resolverSlugFromEnv());
+  return buildMetadata({
+    title: "Contato",
+    description:
+      "Agende sua avaliação na Bless Hair & Care, em Pirituba, Zona Oeste de São Paulo, ou fale direto pelo WhatsApp.",
+    path: "/contato",
+    dominio: repository?.dominioPrincipal ?? undefined,
+    siteName: repository?.hero.nome,
+  });
+}
 
 // Contact/SiteConfig (2026-07-23) -- item 3 da fila. Fallback local espelha
 // o hardcode anterior exatamente -- so entra em cena se o Repository cair.

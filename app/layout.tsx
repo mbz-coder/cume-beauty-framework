@@ -41,15 +41,26 @@ const inter = Inter({
   display: "swap",
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL("https://blesshaircare.com.br"),
-  title: {
-    default: "Bless Hair & Care | Beleza que cuida — Pirituba, Zona Oeste SP",
-    template: "%s | Bless Hair & Care",
-  },
-  description:
-    "Sobrancelha, laser, pele e autoestima — tudo com avaliação antes de qualquer procedimento. Atendimento em Pirituba, Zona Oeste de São Paulo.",
-};
+// SEO (2026-07-23), item 4 da fila -- metadataBase/siteName agora vem do
+// Content Repository, com fallback pro dominio real da Bless
+// ("blesshairecare", nao "blesshaircare" -- typo corrigido, ver
+// ClienteInfraestrutura.dominioPrincipal confirmado com o usuario).
+const DOMINIO_FALLBACK = "blesshairecare.com.br";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const repository = await buscarConteudoRepository(resolverSlugFromEnv());
+  const dominio = repository?.dominioPrincipal ?? DOMINIO_FALLBACK;
+  const nome = repository?.hero.nome ?? marcaFallback.nome;
+  return {
+    metadataBase: new URL(`https://${dominio}`),
+    title: {
+      default: "Bless Hair & Care | Beleza que cuida — Pirituba, Zona Oeste SP",
+      template: `%s | ${nome}`,
+    },
+    description:
+      "Sobrancelha, laser, pele e autoestima — tudo com avaliação antes de qualquer procedimento. Atendimento em Pirituba, Zona Oeste de São Paulo.",
+  };
+}
 
 // CUME Brand & Content Engine, Fase 0.5 (2026-07-21) -- paleta institucional
 // deixa de ser so o :root fixo de globals.css e passa a poder ser

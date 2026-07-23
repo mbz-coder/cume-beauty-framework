@@ -8,24 +8,34 @@ export function JsonLd({ data }: { data: Record<string, unknown> }) {
   );
 }
 
-// nome/telephone/address/url: o Content Repository ainda nao modela
-// telefone/endereco/dominio do cliente (gap real, nao forcar) -- so `nome`
-// (Cliente.nome, via repository.hero) ja pode vir do Repository hoje.
-// Quando o Repository ganhar esses campos, so passar como parametro aqui.
-export function localBusinessSchema(overrides?: { nome?: string }) {
+// SEO (2026-07-23), item 4 da fila -- telephone/address/url agora vem do
+// Content Repository (Cliente.whatsappPrincipal/cidade/estado,
+// ClienteInfraestrutura.dominioPrincipal), com fallback pro dado real da
+// Bless (dominio fallback corrigido -- "blesshairecare", nao
+// "blesshaircare", confirmado como o real em producao).
+const DOMINIO_FALLBACK = "blesshairecare.com.br";
+
+export function localBusinessSchema(overrides?: {
+  nome?: string;
+  whatsappPrincipal?: string;
+  cidade?: string;
+  estado?: string;
+  dominio?: string;
+}) {
+  const dominio = overrides?.dominio ?? DOMINIO_FALLBACK;
   return {
     "@context": "https://schema.org",
     "@type": "BeautySalon",
     name: overrides?.nome ?? "Bless Hair & Care",
-    image: "https://blesshaircare.com.br/og-image.jpg",
-    telephone: "+5511967466085",
+    image: `https://${dominio}/og-image.jpg`,
+    telephone: `+${overrides?.whatsappPrincipal ?? "5511967466085"}`,
     address: {
       "@type": "PostalAddress",
-      addressLocality: "Pirituba, São Paulo",
-      addressRegion: "SP",
+      addressLocality: overrides?.cidade ?? "São Paulo",
+      addressRegion: overrides?.estado ?? "SP",
       addressCountry: "BR",
     },
-    url: "https://blesshaircare.com.br",
+    url: `https://${dominio}`,
   };
 }
 

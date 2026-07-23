@@ -100,13 +100,15 @@ export async function generateMetadata(props: {
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await props.params;
-  const view = await montarView(slug);
+  const [view, repository] = await Promise.all([montarView(slug), buscarConteudoRepository(resolverSlugFromEnv())]);
   if (!view) return {};
 
   return buildMetadata({
     title: view.seoTitle ?? `${view.nome} — ${view.papel} | Bless Hair & Care`,
     description: view.seoDescription ?? view.bio,
     path: `/especialistas/${slug}`,
+    dominio: repository?.dominioPrincipal ?? undefined,
+    siteName: repository?.hero.nome,
   });
 }
 
