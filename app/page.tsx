@@ -73,10 +73,16 @@ function especialidadesFallback(): EspecialidadeExibida[] {
 }
 
 const WHATSAPP_FALLBACK = "5511967466085";
+const manifestoFallback = {
+  manifesto: "Você merece gostar do reflexo que vê todos os dias.",
+  manifestoSub: "Estética, cabelo e autoestima — tratados com a mesma técnica, o mesmo cuidado.",
+};
 
 export default async function HomePage() {
   const repository = await buscarConteudoRepository(resolverSlugFromEnv());
   const whatsappPrincipal = repository?.hero.whatsappPrincipal ?? WHATSAPP_FALLBACK;
+  const manifesto = repository?.hero.manifesto ?? manifestoFallback.manifesto;
+  const manifestoSub = repository?.hero.manifestoSub ?? manifestoFallback.manifestoSub;
   const faq = escolherOuFallback(
     repository?.faq
       .slice()
@@ -126,7 +132,7 @@ export default async function HomePage() {
         youtubeId="Hf6abfL1la4"
       />
 
-      <Manifesto />
+      <Manifesto manifesto={manifesto} manifestoSub={manifestoSub} />
 
       <EditorialPause
         src="/images/lifestyle/pausa-editorial.jpg"
