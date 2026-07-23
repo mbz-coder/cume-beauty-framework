@@ -78,6 +78,63 @@ const manifestoFallback = {
   manifestoSub: "Estética, cabelo e autoestima — tratados com a mesma técnica, o mesmo cuidado.",
 };
 
+// Resultados/Espaco (2026-07-23), item 6 da fila. Fallback local espelha o
+// hardcode anterior exatamente -- so entra em cena se o Repository cair.
+const fotosEspacoFallback = [
+  { src: "/images/espaco/IMG_2068.PNG", alt: "Estação de atendimento da Bless, com poltronas e espelho" },
+  { src: "/images/espaco/IMG_2069.PNG", alt: "Salão da Bless com lustres de cristal e paredes de tijolo aparente" },
+  { src: "/images/espaco/WhatsApp Image 2026-07-16 at 18.02.58.jpeg", alt: "Detalhe do espaço da Bless Hair & Care" },
+  { src: "/images/espaco/WhatsApp Image 2026-07-16 at 18.07.04.jpeg", alt: "Detalhe do espaço da Bless Hair & Care" },
+  { src: "/images/espaco/IMG_2934.jpg", alt: "Balcão de atendimento da Bless Hair & Care" },
+  { src: "/images/espaco/IMG_2935.jpg", alt: "Fachada e entrada da Bless Hair & Care" },
+  { src: "/images/espaco/loja-de-roupa.jpg", alt: "Loja de roupa dentro da Bless Hair & Care" },
+];
+
+const resultadosFallback = [
+  {
+    tratamento: "Lavieen / Protocolo Pele Nova",
+    antes: { src: "/images/resultados/pescoco-antes.jpg", alt: "Pescoço e colo antes do protocolo" },
+    depois: { src: "/images/resultados/pescoco-depois.jpg", alt: "Pescoço e colo depois do protocolo" },
+  },
+  {
+    tratamento: "Lavieen / Protocolo Pele Nova",
+    antes: { src: "/images/resultados/rosto-antes.jpg", alt: "Rosto de perfil antes do protocolo" },
+    depois: { src: "/images/resultados/rosto-depois.jpg", alt: "Rosto de frente depois do protocolo" },
+  },
+];
+
+// Pareia Midia por categoria+tag: "espaco" e uma galeria solta (ordenada
+// pela tag "ordem-N"); "resultado-antes"/"resultado-depois" formam pares
+// pela tag compartilhada ("par-N"), com o nome do tratamento vindo do
+// Servico ligado por servicoId.
+function montarFotosEspaco(repository: Awaited<ReturnType<typeof buscarConteudoRepository>>) {
+  return (repository?.midias ?? [])
+    .filter((m) => m.categoria === "espaco")
+    .slice()
+    .sort((a, b) => (a.tags[0] ?? "").localeCompare(b.tags[0] ?? ""))
+    .map((m) => ({ src: m.url, alt: m.altText ?? "" }));
+}
+
+function montarResultados(repository: Awaited<ReturnType<typeof buscarConteudoRepository>>) {
+  const midias = repository?.midias ?? [];
+  const antes = midias.filter((m) => m.categoria === "resultado-antes");
+  const depois = midias.filter((m) => m.categoria === "resultado-depois");
+  const nomeServico = new Map(repository?.servicos.map((s) => [s.id, s.nome]) ?? []);
+
+  return antes
+    .map((a) => {
+      const par = a.tags[0];
+      const d = depois.find((d) => d.tags[0] === par);
+      if (!d) return null;
+      return {
+        tratamento: (a.servicoId && nomeServico.get(a.servicoId)) ?? "",
+        antes: { src: a.url, alt: a.altText ?? "" },
+        depois: { src: d.url, alt: d.altText ?? "" },
+      };
+    })
+    .filter((par): par is NonNullable<typeof par> => par !== null);
+}
+
 export default async function HomePage() {
   const repository = await buscarConteudoRepository(resolverSlugFromEnv());
   const whatsappPrincipal = repository?.hero.whatsappPrincipal ?? WHATSAPP_FALLBACK;
@@ -104,6 +161,8 @@ export default async function HomePage() {
       })),
     especialidadesFallback()
   );
+  const fotosEspaco = escolherOuFallback(montarFotosEspaco(repository), fotosEspacoFallback);
+  const resultados = escolherOuFallback(montarResultados(repository), resultadosFallback);
 
   return (
     <>
@@ -143,9 +202,9 @@ export default async function HomePage() {
 
       <TreatmentsSection especialidades={especialidades} />
 
-      <ResultadosSection />
+      <ResultadosSection resultados={resultados} />
 
-      <EspacoSection />
+      <EspacoSection fotos={fotosEspaco} />
 
       <Testimonials
         depoimentos={[
