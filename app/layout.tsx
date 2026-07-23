@@ -1,10 +1,23 @@
 import type { Metadata } from "next";
 import { Fraunces, Inter } from "next/font/google";
-import { resolverSlugFromEnv } from "@mbz-coder/cume-content-sdk";
+import { buscarConteudoRepository, resolverSlugFromEnv } from "@mbz-coder/cume-content-sdk";
 import { getBrandTheme } from "@theme/brandTheme";
 import { Header } from "@sections/Header";
 import { Footer } from "@sections/Footer";
 import "./globals.css";
+
+// Header/Footer universal (2026-07-23) -- fallback local, mesma regra de
+// dominio do FAQ/Servicos: usado so enquanto o Content Repository nao tiver
+// esses campos cadastrados pra este cliente. Espelha o hardcode anterior
+// exatamente (nome/tagline/mensagem de WhatsApp), zero mudanca visual pra
+// quem ja tem Repository populado (Bless ja tem, ver seed 2026-07-23).
+const marcaFallback = {
+  nome: "Bless Hair & Care",
+  tagline:
+    "Beleza que cuida. Sobrancelha, laser, pele e autoestima — sempre com avaliação antes de qualquer procedimento.",
+  whatsappPrincipal: "5511967466085",
+  mensagemWhatsappPadrao: "Oi Eliana! Vim pelo site e quero agendar uma avaliação.",
+};
 
 // Direção "quiet luxury" (2026-07-17) + polish editorial (2026-07-18): trocado
 // Cormorant Garamond → Fraunces no título — mesma família "serifada elegante",
@@ -57,7 +70,17 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const brandTheme = await getBrandTheme(resolverSlugFromEnv());
+  const slug = resolverSlugFromEnv();
+  const [brandTheme, repository] = await Promise.all([getBrandTheme(slug), buscarConteudoRepository(slug)]);
+  // Campos escalares (nao lista) -- a regra de "dominio exclusivo" de
+  // escolherOuFallback e so pra arrays (FAQ/Servicos/etc.); aqui e so
+  // presenca-ou-fallback simples por campo.
+  const marca = {
+    nome: repository?.hero.nome ?? marcaFallback.nome,
+    tagline: repository?.hero.tagline ?? marcaFallback.tagline,
+    whatsappPrincipal: repository?.hero.whatsappPrincipal ?? marcaFallback.whatsappPrincipal,
+    mensagemWhatsappPadrao: repository?.hero.mensagemWhatsappPadrao ?? marcaFallback.mensagemWhatsappPadrao,
+  };
 
   return (
     <html lang="pt-BR" className={`${cormorant.variable} ${inter.variable} h-full antialiased`}>
@@ -69,9 +92,9 @@ export default async function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col bg-background text-foreground">
-        <Header />
+        <Header marca={marca} />
         <main className="flex-1 pt-16">{children}</main>
-        <Footer />
+        <Footer marca={marca} />
       </body>
     </html>
   );

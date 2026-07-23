@@ -17,7 +17,11 @@ const NAV_LINKS = [
   { href: "/contato", label: "Contato" },
 ];
 
-export function Header() {
+interface HeaderProps {
+  marca: { nome: string };
+}
+
+export function Header({ marca }: HeaderProps) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
@@ -47,7 +51,7 @@ export function Header() {
           href="/"
           className={cn("font-display text-lg tracking-wide", transparent ? "text-white" : "text-brand-ink")}
         >
-          Bless <span className={transparent ? "text-brand-gold-light" : "text-brand-primaria"}>Hair &amp; Care</span>
+          {marca.nome}
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">
