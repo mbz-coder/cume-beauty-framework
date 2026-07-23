@@ -2,20 +2,23 @@
 
 import { useState } from "react";
 import { LeadForm } from "@forms/LeadForm";
-import { siteConfig } from "@theme/tokens";
 import { SPECIALISTS } from "@specialists/data";
 
 type Interesse = "estetica" | "cabelo";
+
+interface ContatoForkProps {
+  whatsappPrincipal: string;
+}
 
 // Pedido do Moabe (2026-07-17): a aba de agendamento pergunta o que a pessoa
 // procura antes de decidir o caminho — estética cai no formulário/CRM de
 // verdade (Eliana, motor de crescimento); cabelo é só WhatsApp direto com o
 // Jonathan (ele não capta cliente novo ativamente, agenda já é concorrida).
 // Hoje os dois usam o mesmo número — troca fácil quando existir um separado.
-export function ContatoFork() {
+export function ContatoFork({ whatsappPrincipal }: ContatoForkProps) {
   const [interesse, setInteresse] = useState<Interesse>("estetica");
   const jonathan = SPECIALISTS.jonathan;
-  const waJonathan = `https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(jonathan.waMensagemPadrao)}`;
+  const waJonathan = `https://wa.me/${whatsappPrincipal}?text=${encodeURIComponent(jonathan.waMensagemPadrao)}`;
 
   return (
     <div className="rounded-2xl border border-border bg-white p-8">

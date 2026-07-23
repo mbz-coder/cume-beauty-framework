@@ -5,7 +5,6 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { fadeUpViewport } from "@theme/motion";
 import { getPublishedSpecialists } from "@specialists/data";
-import { siteConfig } from "@theme/tokens";
 
 // Uma narrativa só ("Especialistas"), não duas seções separadas tipo
 // departamento. Jonathan à esquerda (impacto, editorial), Eliana à direita
@@ -18,7 +17,11 @@ import { siteConfig } from "@theme/tokens";
 // cada um (specialist.ctaTeaser) — Eliana capta ("Agendar avaliação", pula
 // pro #agendar da própria Home), Jonathan não ("Conhecer o trabalho", vai
 // pro WhatsApp) — agenda dele já é cheia, nunca prometer vaga que não existe.
-export function SpecialistsTeaser() {
+interface SpecialistsTeaserProps {
+  whatsappPrincipal: string;
+}
+
+export function SpecialistsTeaser({ whatsappPrincipal }: SpecialistsTeaserProps) {
   const specialists = getPublishedSpecialists();
   if (specialists.length === 0) return null;
 
@@ -35,7 +38,7 @@ export function SpecialistsTeaser() {
 
       <div className={`grid gap-px bg-border ${specialists.length > 1 ? "md:grid-cols-2" : "mx-auto max-w-xl"}`}>
         {specialists.map((specialist) => {
-          const waHref = `https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(specialist.waMensagemPadrao)}`;
+          const waHref = `https://wa.me/${whatsappPrincipal}?text=${encodeURIComponent(specialist.waMensagemPadrao)}`;
           const isConversion = specialist.variant === "conversion";
 
           return (

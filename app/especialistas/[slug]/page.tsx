@@ -5,8 +5,7 @@ import { ServicesGrid } from "@sections/ServicesGrid";
 import { FAQSection } from "@sections/FAQSection";
 import { CTASection } from "@sections/CTASection";
 import { buildMetadata } from "@seo/metadata";
-import { siteConfig } from "@theme/tokens";
-import { buscarProfissionalPorSlug, resolverSlugFromEnv } from "@mbz-coder/cume-content-sdk";
+import { buscarConteudoRepository, buscarProfissionalPorSlug, resolverSlugFromEnv } from "@mbz-coder/cume-content-sdk";
 import { getPublishedSpecialists, getSpecialist } from "@specialists/data";
 import type { SpecialistBrandTheme, SpecialistVariant } from "@specialists/types";
 
@@ -111,12 +110,15 @@ export async function generateMetadata(props: {
   });
 }
 
+const WHATSAPP_FALLBACK = "5511967466085";
+
 export default async function SpecialistPage(props: { params: Promise<{ slug: string }> }) {
   const { slug } = await props.params;
-  const view = await montarView(slug);
+  const [view, repository] = await Promise.all([montarView(slug), buscarConteudoRepository(resolverSlugFromEnv())]);
   if (!view) notFound();
 
-  const waHref = `https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(view.waMensagemPadrao)}`;
+  const whatsappPrincipal = repository?.hero.whatsappPrincipal ?? WHATSAPP_FALLBACK;
+  const waHref = `https://wa.me/${whatsappPrincipal}?text=${encodeURIComponent(view.waMensagemPadrao)}`;
 
   // Página assume 100% a paleta do especialista (dourado ou vinho, nunca
   // misturado) — header/footer ficam fora desta div, sempre dourado institucional.

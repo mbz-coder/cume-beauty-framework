@@ -17,6 +17,8 @@ const marcaFallback = {
     "Beleza que cuida. Sobrancelha, laser, pele e autoestima — sempre com avaliação antes de qualquer procedimento.",
   whatsappPrincipal: "5511967466085",
   mensagemWhatsappPadrao: "Oi Eliana! Vim pelo site e quero agendar uma avaliação.",
+  instagram: "sobrancelhasbless",
+  endereco: "Pirituba, Zona Oeste de São Paulo",
 };
 
 // Direção "quiet luxury" (2026-07-17) + polish editorial (2026-07-18): trocado
@@ -80,6 +82,8 @@ export default async function RootLayout({
     tagline: repository?.hero.tagline ?? marcaFallback.tagline,
     whatsappPrincipal: repository?.hero.whatsappPrincipal ?? marcaFallback.whatsappPrincipal,
     mensagemWhatsappPadrao: repository?.hero.mensagemWhatsappPadrao ?? marcaFallback.mensagemWhatsappPadrao,
+    instagram: repository?.hero.instagram ?? marcaFallback.instagram,
+    endereco: repository?.hero.endereco ?? marcaFallback.endereco,
   };
 
   return (

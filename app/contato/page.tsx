@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { ContatoFork } from "@sections/ContatoFork";
 import { buildMetadata } from "@seo/metadata";
-import { siteConfig } from "@theme/tokens";
+import { buscarConteudoRepository, resolverSlugFromEnv } from "@mbz-coder/cume-content-sdk";
 
 export const metadata: Metadata = buildMetadata({
   title: "Contato",
@@ -10,9 +10,25 @@ export const metadata: Metadata = buildMetadata({
   path: "/contato",
 });
 
-export default function ContatoPage() {
-  const waLink = `https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(
-    "Oi Eliana! Vim pela página e quero agendar uma avaliação."
+// Contact/SiteConfig (2026-07-23) -- item 3 da fila. Fallback local espelha
+// o hardcode anterior exatamente -- so entra em cena se o Repository cair.
+const contatoFallback = {
+  whatsappPrincipal: "5511967466085",
+  mensagemWhatsappPadrao: "Oi Eliana! Vim pela página e quero agendar uma avaliação.",
+  instagram: "sobrancelhasbless",
+  endereco: "Pirituba, Zona Oeste de São Paulo — a poucos minutos de Lapa, Perdizes, Vila Leopoldina e Pinheiros.",
+};
+
+export default async function ContatoPage() {
+  const repository = await buscarConteudoRepository(resolverSlugFromEnv());
+  const contato = {
+    whatsappPrincipal: repository?.hero.whatsappPrincipal ?? contatoFallback.whatsappPrincipal,
+    mensagemWhatsappPadrao: repository?.hero.mensagemWhatsappPadrao ?? contatoFallback.mensagemWhatsappPadrao,
+    instagram: repository?.hero.instagram ?? contatoFallback.instagram,
+    endereco: repository?.hero.endereco ?? contatoFallback.endereco,
+  };
+  const waLink = `https://wa.me/${contato.whatsappPrincipal}?text=${encodeURIComponent(
+    contato.mensagemWhatsappPadrao
   )}`;
 
   return (
@@ -39,23 +55,23 @@ export default function ContatoPage() {
               <dt className="text-sm font-semibold text-brand-primaria-dark">Instagram</dt>
               <dd className="mt-1">
                 <a
-                  href={`https://instagram.com/${siteConfig.instagram}`}
+                  href={`https://instagram.com/${contato.instagram}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-brand-primaria"
                 >
-                  @{siteConfig.instagram}
+                  @{contato.instagram}
                 </a>
               </dd>
             </div>
             <div>
               <dt className="text-sm font-semibold text-brand-primaria-dark">Endereço</dt>
-              <dd className="mt-1">Pirituba, Zona Oeste de São Paulo — a poucos minutos de Lapa, Perdizes, Vila Leopoldina e Pinheiros.</dd>
+              <dd className="mt-1">{contato.endereco}</dd>
             </div>
           </dl>
         </div>
 
-        <ContatoFork />
+        <ContatoFork whatsappPrincipal={contato.whatsappPrincipal} />
       </div>
     </section>
   );

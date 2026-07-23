@@ -70,8 +70,11 @@ function especialidadesFallback(): EspecialidadeExibida[] {
   );
 }
 
+const WHATSAPP_FALLBACK = "5511967466085";
+
 export default async function HomePage() {
   const repository = await buscarConteudoRepository(resolverSlugFromEnv());
+  const whatsappPrincipal = repository?.hero.whatsappPrincipal ?? WHATSAPP_FALLBACK;
   const faq = escolherOuFallback(
     repository?.faq
       .slice()
@@ -120,7 +123,7 @@ export default async function HomePage() {
         alt="Atendimento na Bless Hair & Care"
       />
 
-      <SpecialistsTeaser />
+      <SpecialistsTeaser whatsappPrincipal={whatsappPrincipal} />
 
       <TreatmentsSection especialidades={especialidades} />
 

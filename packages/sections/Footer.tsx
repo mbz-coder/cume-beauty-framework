@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { siteConfig } from "@theme/tokens";
 
 interface FooterProps {
   marca: {
@@ -7,6 +6,8 @@ interface FooterProps {
     tagline: string;
     whatsappPrincipal: string;
     mensagemWhatsappPadrao: string;
+    instagram: string;
+    endereco: string;
   };
 }
 
@@ -17,7 +18,11 @@ export function Footer({ marca }: FooterProps) {
     marca.mensagemWhatsappPadrao
   )}`;
 
-  const mapsLink = "https://www.google.com/maps/search/?api=1&query=Bless+Hair+%26+Care+Pirituba+S%C3%A3o+Paulo";
+  // mapsLink deriva de nome+endereco (ambos dinamicos agora) em vez de uma
+  // query string fixa -- mesmo principio do resto do item 3.
+  const mapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+    `${marca.nome} ${marca.endereco}`
+  )}`;
 
   return (
     <footer className="bg-brand-black">
@@ -45,15 +50,15 @@ export function Footer({ marca }: FooterProps) {
                 WhatsApp
               </a>
               <a
-                href={`https://instagram.com/${siteConfig.instagram}`}
+                href={`https://instagram.com/${marca.instagram}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-fit transition-colors hover:text-brand-gold-light"
               >
-                @{siteConfig.instagram}
+                @{marca.instagram}
               </a>
               <a href={mapsLink} target="_blank" rel="noopener noreferrer" className="w-fit transition-colors hover:text-brand-gold-light">
-                Pirituba, Zona Oeste de São Paulo
+                {marca.endereco}
               </a>
             </div>
           </div>
