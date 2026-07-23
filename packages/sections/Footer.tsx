@@ -11,6 +11,18 @@ interface FooterProps {
   };
 }
 
+// Apresentacao, nao conteudo (2026-07-23, decisao explicita do usuario):
+// Cliente.endereco guarda a forma mais completa (fonte unica pra Footer e
+// /contato); o Footer decide exibir so os 2 primeiros segmentos separados
+// por virgula (bairro + cidade), sem precisar de um segundo campo tipo
+// enderecoResumido no Content Repository. Regra generica (nao especifica
+// da Bless) -- qualquer endereco "Bairro, Cidade, detalhe extra..." resume
+// da mesma forma.
+function enderecoResumido(endereco: string): string {
+  const segmentos = endereco.split(",").map((s) => s.trim());
+  return segmentos.slice(0, 2).join(", ");
+}
+
 // Preto reservado pra footer/CTA/algumas divisões (2026-07-17) — só 3 blocos
 // escuros no site inteiro (Hero, CTA, Footer), o resto respira claro.
 export function Footer({ marca }: FooterProps) {
@@ -58,7 +70,7 @@ export function Footer({ marca }: FooterProps) {
                 @{marca.instagram}
               </a>
               <a href={mapsLink} target="_blank" rel="noopener noreferrer" className="w-fit transition-colors hover:text-brand-gold-light">
-                {marca.endereco}
+                {enderecoResumido(marca.endereco)}
               </a>
             </div>
           </div>

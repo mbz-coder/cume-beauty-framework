@@ -18,7 +18,7 @@ const marcaFallback = {
   whatsappPrincipal: "5511967466085",
   mensagemWhatsappPadrao: "Oi Eliana! Vim pelo site e quero agendar uma avaliação.",
   instagram: "sobrancelhasbless",
-  endereco: "Pirituba, Zona Oeste de São Paulo",
+  endereco: "Pirituba, Zona Oeste de São Paulo, a poucos minutos de Lapa, Perdizes, Vila Leopoldina e Pinheiros.",
 };
 
 // Direção "quiet luxury" (2026-07-17) + polish editorial (2026-07-18): trocado

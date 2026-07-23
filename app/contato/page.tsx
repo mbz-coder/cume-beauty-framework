@@ -16,7 +16,7 @@ const contatoFallback = {
   whatsappPrincipal: "5511967466085",
   mensagemWhatsappPadrao: "Oi Eliana! Vim pela página e quero agendar uma avaliação.",
   instagram: "sobrancelhasbless",
-  endereco: "Pirituba, Zona Oeste de São Paulo — a poucos minutos de Lapa, Perdizes, Vila Leopoldina e Pinheiros.",
+  endereco: "Pirituba, Zona Oeste de São Paulo, a poucos minutos de Lapa, Perdizes, Vila Leopoldina e Pinheiros.",
 };
 
 export default async function ContatoPage() {
